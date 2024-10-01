@@ -1,2 +1,2 @@
-# 2024_11c_04_6week
-s27029 Juliusz Stokrocki, s27064 Olaf Naleszkiewicz, ...
+# Bang bang bangarang
+- pluh
