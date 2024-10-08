@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342e824d9e823e84abd41d059b6c6daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  downwardForce: {x: 0, y: -100}
   _maxDistance: 10
 --- !u!232 &-5796507017550180512
 DistanceJoint2D:

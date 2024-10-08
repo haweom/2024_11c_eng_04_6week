@@ -9,6 +9,7 @@ public class GraplingHook : MonoBehaviour
     private GameObject _player;
     private Rigidbody2D _playerRb;
 
+    [SerializeField] Vector2 downwardForce = new Vector2(0, -5f);
     [SerializeField] private float _maxDistance;
     //calculating Distance travelled
     private Vector2 _startingPosition;
@@ -47,6 +48,8 @@ public class GraplingHook : MonoBehaviour
             joint.enabled = true;
             float playerDistance = Vector2.Distance(_player.transform.position, transform.position);
             joint.distance = Mathf.Clamp(playerDistance, 0, _maxDistance);
+            
+            _playerRb.AddForce(downwardForce, ForceMode2D.Force);
         }
     }
 
