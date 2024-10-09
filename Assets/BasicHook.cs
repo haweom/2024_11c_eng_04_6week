@@ -8,14 +8,13 @@ public class GraplingHook : MonoBehaviour
     private Rigidbody2D _rb;
     private GameObject _player;
     private Rigidbody2D _playerRb;
-
-    [SerializeField] Vector2 downwardForce = new Vector2(0, -5f);
+    private LineRenderer _lineRenderer;
+    
     [SerializeField] private float _maxDistance;
-    //calculating Distance travelled
+    [SerializeField] private float climbSpeed;
     private Vector2 _startingPosition;
-    //want to anchor with player
-    private DistanceJoint2D joint;
-    private bool isAttached = false;
+    private SpringJoint2D joint;
+    private bool isAttached;
 
     private void Awake()
     {
@@ -24,32 +23,47 @@ public class GraplingHook : MonoBehaviour
 
     private void Start()
     {
+        isAttached = false;
         _startingPosition = transform.position;
-        joint = gameObject.GetComponent<DistanceJoint2D>();
+        joint = gameObject.GetComponent<SpringJoint2D>();
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerRb = _player.GetComponent<Rigidbody2D>();
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.startWidth = 0.05f;
+        _lineRenderer.endWidth = 0.05f;
         joint.enabled = false;
+        joint.enableCollision = true;
     }
 
     private void Update()
     {
         float distanceTraveled = Vector2.Distance(_startingPosition, transform.position);
-        
+
         if (distanceTraveled >= _maxDistance)
         {
             Destroy(gameObject);
-            isAttached = false;
         }
         
-
+        _lineRenderer.enabled = true;
+        _lineRenderer.SetPosition(0, transform.position);
+        _lineRenderer.SetPosition(1, _player.transform.position);
+        
         if (isAttached)
         {
             joint.connectedBody = _playerRb;
             joint.enabled = true;
-            float playerDistance = Vector2.Distance(_player.transform.position, transform.position);
-            joint.distance = Mathf.Clamp(playerDistance, 0, _maxDistance);
             
-            _playerRb.AddForce(downwardForce, ForceMode2D.Force);
+            /*_lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(1, _player.transform.position);*/
+            
+            float verticalInput = Input.GetAxis("Vertical");
+            if (verticalInput != 0)
+            {
+                joint.distance -= verticalInput * climbSpeed * Time.deltaTime;
+                joint.distance = Mathf.Clamp(joint.distance, 0.5f, _maxDistance);
+            }
+            
         }
     }
 
@@ -58,8 +72,9 @@ public class GraplingHook : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             _rb.velocity = Vector2.zero;
+            float playerDistance = Vector2.Distance(_player.transform.position, transform.position);
+            joint.distance = Mathf.Clamp(playerDistance, 0.5f, _maxDistance);
             isAttached = true;
         }
     }
-    
 }
