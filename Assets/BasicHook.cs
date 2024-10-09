@@ -53,10 +53,6 @@ public class GraplingHook : MonoBehaviour
             joint.connectedBody = _playerRb;
             joint.enabled = true;
             
-            /*_lineRenderer.enabled = true;
-            _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, _player.transform.position);*/
-            
             float verticalInput = Input.GetAxis("Vertical");
             if (verticalInput != 0)
             {
