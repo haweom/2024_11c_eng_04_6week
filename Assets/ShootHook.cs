@@ -20,7 +20,7 @@ public class ShootHook : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Destroy(hook);
         }

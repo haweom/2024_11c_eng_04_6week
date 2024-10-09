@@ -50,7 +50,6 @@ public class GraplingHook : MonoBehaviour
 
         if (_isAttached)
         {
-
             _joint.connectedBody = _playerRb;
             _joint.enabled = true;
             

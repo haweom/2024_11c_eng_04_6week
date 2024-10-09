@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342e824d9e823e84abd41d059b6c6daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxDistance: 10
+  maxDistance: 10
   climbSpeed: 5
 --- !u!231 &117329948150536429
 SpringJoint2D:
@@ -184,8 +184,8 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 1
-  m_DampingRatio: 0.5
-  m_Frequency: 2
+  m_DampingRatio: 0.9
+  m_Frequency: 30
 --- !u!120 &2429476723935068769
 LineRenderer:
   serializedVersion: 2
