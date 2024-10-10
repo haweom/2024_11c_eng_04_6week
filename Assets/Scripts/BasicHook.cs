@@ -29,8 +29,8 @@ public class GraplingHook : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerRb = _player.GetComponent<Rigidbody2D>();
         _lineRenderer = GetComponent<LineRenderer>();
-        _lineRenderer.startWidth = 0.05f;
-        _lineRenderer.endWidth = 0.05f;
+        //_lineRenderer.startWidth = 0.05f;
+        //_lineRenderer.endWidth = 0.05f;
         _joint.enabled = false;
         _joint.enableCollision = true;
     }
