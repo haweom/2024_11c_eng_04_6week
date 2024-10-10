@@ -37,7 +37,7 @@ public class GraplingHook : MonoBehaviour
 
     private void Update()
     {
-        float distanceTraveled = Vector2.Distance(_startingPosition, transform.position);
+        float distanceTraveled = Vector2.Distance(_playerRb.transform.position, transform.position);
 
         if (distanceTraveled >= maxDistance)
         {
