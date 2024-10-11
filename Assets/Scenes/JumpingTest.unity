@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 324854187}
   - component: {fileID: 324854186}
   - component: {fileID: 324854188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3249,37 +3249,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1978319284
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1978319285}
-  m_Layer: 0
-  m_Name: AttackTransform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1978319285
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978319284}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.659, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6958841189608538182}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &17473190223754100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3328,36 +3297,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5893059774367488778, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
-      propertyPath: jumpBufferTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939209781697779289, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
-      propertyPath: attackRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939209781697779289, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
-      propertyPath: attackSpeed
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939209781697779289, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
-      propertyPath: attackTransform
-      value: 
-      objectReference: {fileID: 1978319285}
-    - target: {fileID: 6939209781697779289, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
-      propertyPath: attackableLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 8191185798738544414, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4600881231847678726, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1978319285}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
 --- !u!4 &6958841189608538182 stripped
