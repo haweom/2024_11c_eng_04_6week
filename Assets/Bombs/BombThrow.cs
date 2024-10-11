@@ -45,7 +45,7 @@ public class BombThrow : MonoBehaviour
 
         _strength = Math.Abs(mousePosition.x - bombGun.position.x);
         _strength = _strength > 5 ? 1 : _strength/5;
-        Debug.Log(_strength);
+        
         if (mousePosition.x - bombGun.position.x < 0)
         {
             return false;

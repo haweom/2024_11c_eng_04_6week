@@ -5,7 +5,8 @@ public class BombProjectile : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private Collider2D[] _explosionCollider = null;
-
+    private Animator _animator;
+    
     [SerializeField] private float explosionForceMultiplier = 5f;
     [SerializeField] private float explosionRadius = 5f;
     [SerializeField] private float speed = 2.5f;
@@ -17,6 +18,7 @@ public class BombProjectile : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -27,12 +29,17 @@ public class BombProjectile : MonoBehaviour
     private void Update()
     {
         timeAlive -= Time.deltaTime;
+        if (timeAlive <= 0.13f)
+        {
+            transform.rotation = Quaternion.identity;
+            _animator.SetBool("Destroy", true);
+        }
         if (timeAlive <= 0)
         {
-            Debug.Log("Boom");
             Explode();
             Destroy(gameObject);
         }
+        
     }
 
     private void FixedUpdate()
