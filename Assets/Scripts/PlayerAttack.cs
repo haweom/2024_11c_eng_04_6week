@@ -44,6 +44,9 @@ public class PlayerAttack : MonoBehaviour
         
         for (int i = 0; i < _hits.Length; i++)
         {
+            if (_hits[i].collider.CompareTag("Player"))
+                continue;
+            
             IDamageable damageable = _hits[i].collider.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
