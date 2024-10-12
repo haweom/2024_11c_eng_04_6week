@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class ShootHook : MonoBehaviour
 {
-    [SerializeField] private GameObject _graplingHook;
-    [SerializeField] private Transform _shootPoint;
-    [SerializeField] private float _speed;
+    [SerializeField] private GameObject graplingHook;
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private float speed;
 
-    private GameObject hook;
+    private GameObject _hook;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hook == null)
+            if (_hook == null)
             {
-                shootGraplingHook();
+                ShootGraplingHook();
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Destroy(hook);
+            Destroy(_hook);
         }
     }
 
-    private void shootGraplingHook()
+    private void ShootGraplingHook()
     {
-        hook = Instantiate(_graplingHook, _shootPoint.position, Quaternion.identity);
+        _hook = Instantiate(graplingHook, shootPoint.position, Quaternion.identity);
 
-        Vector2 shootDirection = getMouseDirection();
+        Vector2 shootDirection = GetMouseDirection();
 
-        Rigidbody2D hookRb = hook.GetComponent<Rigidbody2D>();
-        hookRb.velocity = shootDirection * _speed;
+        Rigidbody2D hookRb = _hook.GetComponent<Rigidbody2D>();
+        hookRb.velocity = shootDirection * speed;
     }
 
-    private Vector2 getMouseDirection()
+    private Vector2 GetMouseDirection()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
 
-        Vector2 direction = (mousePosition - _shootPoint.position).normalized;
+        Vector2 direction = (mousePosition - shootPoint.position).normalized;
 
         return direction;
     }

@@ -60,7 +60,7 @@ public class BombProjectile : MonoBehaviour
                 {
                     float distance = distanceV.magnitude < 0.5 ? 0.5f : distanceV.magnitude;
                     float explosionForce = explosionForceMultiplier / distance;
-                    orb.AddForce(distanceV.normalized * explosionForce, ForceMode2D.Impulse);
+                    orb.AddForce(distanceV.normalized * explosionForce);
                     /*orb.velocity = new Vector2(orb.velocity.x + (distanceV.x * explosionForce),
                         orb.velocity.y + (distanceV.y * explosionForce));*/
                 }
