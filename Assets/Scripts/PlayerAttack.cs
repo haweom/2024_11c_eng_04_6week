@@ -48,6 +48,15 @@ public class PlayerAttack : MonoBehaviour
             if (damageable != null)
             {
                 damageable.Damage(damage);
+
+                Rigidbody2D enemyRb = _hits[i].collider.gameObject.GetComponent<Rigidbody2D>();
+                if (enemyRb != null)
+                {
+                    Vector2 knockbackDirection = _hits[i].transform.position - transform.position;
+                    knockbackDirection.Normalize();
+                    
+                    enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+                }
             }
         }
     }
