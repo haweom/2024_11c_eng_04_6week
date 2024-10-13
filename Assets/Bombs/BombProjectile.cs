@@ -11,6 +11,7 @@ public class BombProjectile : MonoBehaviour
     [SerializeField] private float explosionRadius = 5f;
     [SerializeField] private float speed = 2.5f;
     [SerializeField] private float timeAlive = 3f;
+    [SerializeField] private float damage = 20f;
     public float direction;
     public float throwStrength;
 
@@ -64,6 +65,12 @@ public class BombProjectile : MonoBehaviour
                     /*orb.velocity = new Vector2(orb.velocity.x + (distanceV.x * explosionForce),
                         orb.velocity.y + (distanceV.y * explosionForce));*/
                 }
+            }
+            //attack implement:
+            IDamageable damageable = o.GetComponent<IDamageable>();
+            if (damageable != null && !o.CompareTag("Player"))
+            {
+                damageable.Damage(damage);
             }
         }
     }
