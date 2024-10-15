@@ -6,6 +6,7 @@ public class ShootBullet : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private Transform bulletSpawn;
      
     private GameObject _bullet;
     private Transform _shootPostion;
@@ -21,7 +22,7 @@ public class ShootBullet : MonoBehaviour
     
     private void Update()
     {
-        if (_playerTransform != null && Vector2.Distance(transform.position, _playerTransform.position) <= 10)
+        if (_playerTransform != null && Vector2.Distance(bulletSpawn.position, _playerTransform.position) <= 10)
         {
             _animator.SetBool("Shoot", true);
         }
@@ -33,8 +34,8 @@ public class ShootBullet : MonoBehaviour
 
     public void Shoot()
     {
-        _bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        Vector2 shotDirection = transform.right;
+        _bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+        Vector2 shotDirection = bulletSpawn.right;
         shotDirection.Normalize();
         
         Rigidbody2D rb = _bullet.GetComponent<Rigidbody2D>();
