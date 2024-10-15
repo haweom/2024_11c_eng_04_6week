@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    private bool _isGrounded;
+    public bool _isGrounded;
 
     private Animator _animator;
     private bool _running;
@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float jumpBufferTime = 0.2f;
     private float _jumpBufferCounter;
+    
+    [SerializeField] private GroundDetectorScript groundDetector;
 
     private void Awake()
     {
@@ -42,28 +44,34 @@ public class PlayerMovement : MonoBehaviour
         Coyote();
 
         JumpBuffer();
+        
+        _isGrounded = groundDetector.GroundCheck(); 
+        
     }
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
+        if (_xInput != 0f)
+        {
+            _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _isGrounded = true;
+        //_isGrounded = groundDetector.GroundCheck(other);
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        _isGrounded = false;
+        //_isGrounded = groundDetector.LeaveCheck(other);
     }
 
     private void PerformJump(float jumpModified)
     {
         _jumping = true; //needs to be readjusted for animationchecker func
         _rb.velocity = new Vector2(_rb.velocity.x, jumpModified);
-        _isGrounded = false;
+        //_isGrounded = false;
     }
 
     private void Coyote()
