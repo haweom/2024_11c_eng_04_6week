@@ -12,17 +12,17 @@ public class GroundDetectorScript : MonoBehaviour
     {
     }
 
-    public bool GroundCheck(Collision2D other)
+    public bool GroundCheck()
     {
         //return other.collider.gameObject.layer == LayerMask.NameToLayer("Ground");
         return _isGrounded;
     }
 
-    public bool LeaveCheck(Collision2D other)
+    /*public bool LeaveCheck(Collision2D other)
     {
         //return other.collider.gameObject.layer == LayerMask.NameToLayer("Ground");
         return _isGrounded;
-    }
+    }*/
     
 
     
@@ -33,6 +33,6 @@ public class GroundDetectorScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        _isGrounded = true;
+        _isGrounded = false;
     }
 }

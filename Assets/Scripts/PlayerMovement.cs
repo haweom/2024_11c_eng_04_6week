@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
         JumpBuffer();
         
+        _isGrounded = groundDetector.GroundCheck(); 
+        
     }
 
     private void FixedUpdate()
@@ -57,12 +59,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _isGrounded = groundDetector.GroundCheck(other);
+        //_isGrounded = groundDetector.GroundCheck(other);
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        _isGrounded = groundDetector.LeaveCheck(other);
+        //_isGrounded = groundDetector.LeaveCheck(other);
     }
 
     private void PerformJump(float jumpModified)
