@@ -40,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
-        _hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, attackableLayer);
+        _hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f);
         
         for (int i = 0; i < _hits.Length; i++)
         {
@@ -64,7 +64,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackTransform.position, attackRange);
     }
