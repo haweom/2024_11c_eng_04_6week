@@ -57,6 +57,11 @@ public class GraplingHook : MonoBehaviour
                 _joint.distance -= verticalInput * climbSpeed * Time.deltaTime;
                 _joint.distance = Mathf.Clamp(_joint.distance, 0.5f, maxDistance);
             }
+
+            if (_player.transform.position.y > transform.position.y)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
