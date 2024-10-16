@@ -15,8 +15,8 @@ TagManager:
   - Ground
   - Bomb
   - Attackable
-  - 
-  - 
+  - Player
+  - Collectibles
   - 
   - 
   - 
