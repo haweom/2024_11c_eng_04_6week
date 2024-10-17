@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerScore : MonoBehaviour
 {
     private int _currentScore = 0;
+    [SerializeField] ScoreScript _scoreScript;
 
     private void Start()
     {
@@ -15,5 +16,6 @@ public class PlayerScore : MonoBehaviour
     public void AddScore(int score)
     {
         _currentScore += score;
+        _scoreScript.UpdateScore(_currentScore);
     }
 }
