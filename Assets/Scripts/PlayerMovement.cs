@@ -35,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         _xInput = Input.GetAxis("Horizontal");
-
+        _isGrounded = groundDetector.GroundCheck();
+        
         PlayerDirectionChanger();
 
         AnimationChecker();
@@ -44,12 +45,22 @@ public class PlayerMovement : MonoBehaviour
         Coyote();
 
         JumpBuffer();
-        
-        _isGrounded = groundDetector.GroundCheck(); 
-        
     }
 
     private void FixedUpdate()
+    {
+        if (_isGrounded)
+        {
+            GroundedMovement();
+        }
+        else
+        {
+            AerialMovement();
+        }
+        
+    }
+
+    private void AerialMovement()
     {
         if (_xInput != 0f)
         {
@@ -57,21 +68,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void GroundedMovement()
     {
-        //_isGrounded = groundDetector.GroundCheck(other);
+        _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
     }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        //_isGrounded = groundDetector.LeaveCheck(other);
-    }
-
+    
     private void PerformJump(float jumpModified)
     {
         _jumping = true; //needs to be readjusted for animationchecker func
         _rb.velocity = new Vector2(_rb.velocity.x, jumpModified);
-        //_isGrounded = false;
     }
 
     private void Coyote()
@@ -124,17 +129,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void AnimationChecker()
     {
-        if (_rb.velocity.y < 0)
+        if (!_isGrounded)
         {
-            _falling = true;
-            _jumping = false;
+            _running = false;
+            if (_rb.velocity.y < 0)
+            {
+                _falling = true;
+                _jumping = false;
+            }
+            else if(_rb.velocity.y > 0)
+            {
+                _jumping = true;
+                _falling = false;
+            }
+            else
+            {
+                _jumping = false;
+                _falling = false;
+            }
         }
         else
         {
+            _running = _xInput != 0;
+            _jumping = false;
             _falling = false;
         }
-
-        _running = _xInput != 0;
     }
 
     private void AnimationSetter()
@@ -165,5 +184,24 @@ public class PlayerMovement : MonoBehaviour
         {
             _animator.SetBool("Fall", false);
         }
+        
+        /*if(_isGrounded)
+        {
+            _animator.SetBool("Grounded", true);
+        }
+        else
+        {
+            _animator.SetBool("Grounded", false);
+        }*/
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        
     }
 }

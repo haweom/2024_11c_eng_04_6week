@@ -14,25 +14,22 @@ public class GroundDetectorScript : MonoBehaviour
 
     public bool GroundCheck()
     {
-        //return other.collider.gameObject.layer == LayerMask.NameToLayer("Ground");
         return _isGrounded;
     }
-
-    /*public bool LeaveCheck(Collision2D other)
-    {
-        //return other.collider.gameObject.layer == LayerMask.NameToLayer("Ground");
-        return _isGrounded;
-    }*/
-    
-
-    
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _isGrounded = true;
+        if (other.CompareTag("Ground"))
+        {
+            _isGrounded = true; 
+        }
+        
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        _isGrounded = false;
+        if (other.CompareTag("Ground"))
+        {
+            _isGrounded = false; 
+        }
     }
 }
