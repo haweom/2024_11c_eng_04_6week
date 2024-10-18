@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9170578983977922949}
   - component: {fileID: 7292107276571364628}
   - component: {fileID: 1156474996298294012}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3798732005602909370}
   - component: {fileID: 6074870574536533172}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GraplingGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7289685389348223572}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: AttackTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2200854760732802593}
   - component: {fileID: 1338194233054557102}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BombGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,8 +230,8 @@ GameObject:
   - component: {fileID: 1722920691903133610}
   - component: {fileID: 6939209781697779289}
   - component: {fileID: 2854669837962569055}
-  - component: {fileID: 8170200024901187452}
-  m_Layer: 0
+  - component: {fileID: 7410401955493025209}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -443,7 +443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!114 &8170200024901187452
+  healthBar: {fileID: 0}
+--- !u!114 &7410401955493025209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,7 +453,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8191185798738544414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b374edab32ff614ea9cae1a8b558ce2, type: 3}
+  m_Script: {fileID: 11500000, guid: b59bc27df972981498b9407287dc12e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  _scoreScript: {fileID: 0}

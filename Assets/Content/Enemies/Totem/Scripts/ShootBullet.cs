@@ -9,7 +9,7 @@ public class ShootBullet : MonoBehaviour
     [SerializeField] private Transform bulletSpawn;
      
     private GameObject _bullet;
-    private Transform _shootPostion;
+    private Transform _shootPosition;
     private Transform _playerTransform;
     
     private Animator _animator;
