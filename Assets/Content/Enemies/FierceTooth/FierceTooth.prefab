@@ -347,8 +347,11 @@ MonoBehaviour:
   leftDetector: {fileID: 2641336217059261829}
   speed: 2
   hit: 0
+  attacking: 0
   maxHealth: 50
   currentHealth: 0
+  damage: 10
+  attackRange: 2
 --- !u!95 &2605455763951243669
 Animator:
   serializedVersion: 5

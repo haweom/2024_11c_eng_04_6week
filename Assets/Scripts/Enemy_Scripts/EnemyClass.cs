@@ -11,9 +11,13 @@ public class EnemyClass : MonoBehaviour, IDamageable
     [SerializeField] private float speed = 5;
     private bool _running;
     public bool hit;
+    [SerializeField] public bool attacking;
 
     [SerializeField] private float maxHealth = 50f;
     public float currentHealth;
+    private Collider2D[] _attackCollider;
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float attackRange = 2f;
 
     private bool _alive;
     private bool _patrol;
@@ -35,7 +39,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
     
     private void Update()
     {
-        if (_alive)
+        if (_alive && !attacking)
         {
             _running = _xInput != 0 && !hit;
 
@@ -52,18 +56,25 @@ public class EnemyClass : MonoBehaviour, IDamageable
     {
         if (_alive)
         {
-            DirectionChanger();
-            if (_running)
+            if (attacking) //tmp loop for attacking tests
             {
-                Movement();
+                Attack();
             }
-            if (currentHealth <= 0)
+            else
             {
-                Die();
+                DirectionChanger();
+                if (_running)
+                {
+                    Movement();
+                }
+                if (currentHealth <= 0)
+                {
+                    Die();
+                }
             }
         }
     }
-    
+    //Combat:
     public void Damage(float damage)
     {
         currentHealth -= damage;
@@ -77,6 +88,26 @@ public class EnemyClass : MonoBehaviour, IDamageable
         _rb.velocity = new Vector2(0, 0);
     }
 
+    private void Attack()
+    {
+        _animator.SetTrigger("Attacking");
+        _attackCollider = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+        foreach (Collider2D o in _attackCollider)
+        {
+            IDamageable damageable = o.GetComponent<IDamageable>();
+            if (damageable != null && o.CompareTag("Player"))
+            {
+                damageable.Damage(damage);
+            }
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    //Movement:
     private void Movement()
     {
         _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
