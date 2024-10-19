@@ -1,6 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyClass : MonoBehaviour
+public class EnemyClass : MonoBehaviour, IDamageable
 {
     private Rigidbody2D _rb;
     private Animator _animator;
@@ -8,8 +9,15 @@ public class EnemyClass : MonoBehaviour
     
     private float _xInput;
     [SerializeField] private float speed = 5;
-
     private bool _running;
+    public bool hit;
+
+    [SerializeField] private float maxHealth = 50f;
+    public float currentHealth;
+
+    private bool _alive;
+    private bool _patrol;
+    private bool _chase;
     
     private void Awake()
     {
@@ -20,28 +28,59 @@ public class EnemyClass : MonoBehaviour
     private void Start()
     {
         _xInput = -1;
+        currentHealth = maxHealth;
+        _alive = true;
     }
 
     
     private void Update()
     {
-        _running = _xInput != 0;
-
-        if (!leftDetector.GroundCheck())
+        if (_alive)
         {
-            _xInput *= -1;
-        }
+            _running = _xInput != 0 && !hit;
 
-        
-        AnimationSetter();
+            if (!leftDetector.GroundCheck())
+            {
+                _xInput *= -1;
+            }
+            
+            AnimationSetter();
+        }
     }
 
     private void FixedUpdate()
     {
-        DirectionChanger();
-        _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
+        if (_alive)
+        {
+            DirectionChanger();
+            if (_running)
+            {
+                Movement();
+            }
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
     }
     
+    public void Damage(float damage)
+    {
+        currentHealth -= damage;
+        hit = true;
+    }
+
+    private void Die()
+    {
+        _alive = false;
+        _animator.SetTrigger("DeathHit");
+        _rb.velocity = new Vector2(0, 0);
+    }
+
+    private void Movement()
+    {
+        _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
+    }
     private void DirectionChanger()
     {
         if (_xInput < 0f)
@@ -70,7 +109,10 @@ public class EnemyClass : MonoBehaviour
         {
             _animator.SetBool("Running", false);
         }
-        
+        if (hit)
+        {
+            _animator.SetTrigger("Hit");
+        }
     }
     
     
