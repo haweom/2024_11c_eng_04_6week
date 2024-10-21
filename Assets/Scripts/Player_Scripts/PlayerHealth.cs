@@ -11,22 +11,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public HealthBarScript healthBar;
     private PlayerRespawn _playerRespawn;
-    private GameObject _player;
 
     private void Start()
     {
         _currentHealth = maxHealth;
         healthBar.SetHealth(_currentHealth);
-        _player = GameObject.FindGameObjectWithTag("Player");
         _playerRespawn = FindObjectOfType<PlayerRespawn>();
-    }
-
-    private void Update()
-    {
-        if (_player.transform.position.y < -50f)
-        {
-            _playerRespawn.Respawn();
-        }
     }
 
     private void Die()
@@ -48,5 +38,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         _currentHealth = health;
         healthBar.SetHealth(_currentHealth);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("InstaDeath"))
+        {
+            Die();
+        }
     }
 }
