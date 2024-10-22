@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetMouseButtonDown(0) && _isFalling && _attackTimeCounter >= attackSpeed)
+        if (Input.GetMouseButtonDown(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
         {
             
         }
