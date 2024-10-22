@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float damage;
-    //TODO add knockback
     [SerializeField] private float knockback;
     [SerializeField] private float attackSpeed = 0.2f;
     
@@ -15,11 +14,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask attackableLayer;
     
     private RaycastHit2D[] _hits;
+    private Animator _animator;
 
     private float _attackTimeCounter;
-    
-    private Animator _animator;
     private bool _isAttacking;
+    private bool _isFalling;
+    private bool _hasSword;
 
     private void Start()
     {
@@ -29,11 +29,16 @@ public class PlayerAttack : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && _attackTimeCounter >= attackSpeed)
+        if (Input.GetMouseButtonDown(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
         {
             _animator.SetBool("Attack-1", true);
             _attackTimeCounter = 0f;
             Attack();
+        }
+
+        if (Input.GetMouseButtonDown(0) && _isFalling && _attackTimeCounter >= attackSpeed)
+        {
+            
         }
         _attackTimeCounter += Time.deltaTime;
     }
@@ -62,6 +67,27 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void fallAttack()
+    {
+        
+    }
+
+    public void SetIsFalling(bool isFalling)
+    {
+        _isFalling = isFalling;
+    }
+
+    public void SetHasSword(bool hasSword)
+    {
+        _hasSword = hasSword;
+        _animator.SetBool("hasSword", true);
+    }
+
+    public bool GetHasSword()
+    {
+        return _hasSword;
     }
 
     private void OnDrawGizmos()
