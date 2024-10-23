@@ -21,11 +21,13 @@ public class PlayerAttack : MonoBehaviour
     private bool _isAttacking;
     private bool _isFalling;
     private bool _hasSword;
+    private int _fallAttackCounter;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _attackTimeCounter = attackSpeed;
+        _fallAttackCounter = 1;
     }
     
     private void Update()
@@ -43,12 +45,18 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
         {
-            int randomNumber = UnityEngine.Random.Range(1, 3);
-            if (randomNumber == 1) _animator.SetBool("FallAttack-1", true);
-            if (randomNumber == 2) _animator.SetBool("FallAttack-2", true);
-            
+            if (_fallAttackCounter == 1)
+            {
+                _animator.SetBool("FallAttack-1", true);
+            }
+            if (_fallAttackCounter == 2)
+            {
+                _animator.SetBool("FallAttack-2", true);
+                _fallAttackCounter = 0;
+            }
             _attackTimeCounter = 0f;
             fallAttack();
+            _fallAttackCounter++;
         }
         _attackTimeCounter += Time.deltaTime;
     }
