@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _playerRespawn = FindObjectOfType<PlayerRespawn>();
     }
 
-    private void Die()
+    public void Die()
     {
         _playerRespawn.Respawn();
     }

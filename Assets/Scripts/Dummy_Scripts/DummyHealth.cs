@@ -12,7 +12,7 @@ public class DummyHealth : MonoBehaviour, IDamageable
         _currentHealth = maxHealth;
     }
 
-    private void Die()
+    public void Die()
     {
         Destroy(gameObject);
     }

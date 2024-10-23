@@ -81,7 +81,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
         hit = true;
     }
 
-    private void Die()
+    public void Die()
     {
         _alive = false;
         _animator.SetTrigger("DeathHit");
