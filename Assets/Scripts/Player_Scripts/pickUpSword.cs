@@ -18,7 +18,7 @@ public class pickUpSword : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _playerAttack.SetHasSword(true);
-            Destroy(this.gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }
