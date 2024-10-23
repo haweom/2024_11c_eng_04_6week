@@ -165,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 10
   climbSpeed: 5
+  dragAmount: 1
 --- !u!231 &117329948150536429
 SpringJoint2D:
   m_ObjectHideFlags: 0
