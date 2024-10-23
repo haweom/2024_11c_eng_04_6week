@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _falling;
     private float _xInput;
     private PlayerAttack _playerAttack;
+    public bool _enabled;
 
     [SerializeField] private float speed = 7.5f;
 
@@ -32,22 +33,26 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerAttack = GetComponent<PlayerAttack>();
+        _enabled = true;
     }
 
     private void Update()
     {
-        _xInput = Input.GetAxis("Horizontal");
-        _isGrounded = groundDetector.GroundCheck();
-        _playerAttack.SetIsFalling(!_isGrounded);
-        
-        PlayerDirectionChanger();
+        if (_enabled)
+        {
+            _xInput = Input.GetAxis("Horizontal");
+            _isGrounded = groundDetector.GroundCheck();
+            _playerAttack.SetIsFalling(!_isGrounded);
 
-        AnimationChecker();
-        AnimationSetter();
+            PlayerDirectionChanger();
 
-        Coyote();
+            AnimationChecker();
+            AnimationSetter();
 
-        JumpBuffer();
+            Coyote();
+
+            JumpBuffer();
+        }
     }
 
     private void FixedUpdate()

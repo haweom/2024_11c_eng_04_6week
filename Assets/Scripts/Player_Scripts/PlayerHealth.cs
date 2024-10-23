@@ -7,21 +7,24 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private PlayerMovement _playerMovement;
     private float _currentHealth;
 
     public HealthBarScript healthBar;
     private PlayerRespawn _playerRespawn;
+    private Animator _animator;
 
     private void Start()
     {
         _currentHealth = maxHealth;
         healthBar.SetHealth(_currentHealth);
         _playerRespawn = FindObjectOfType<PlayerRespawn>();
+        _animator = GetComponent<Animator>();
     }
 
     public void Die()
     {
-        _playerRespawn.Respawn();
+        StartCoroutine(DieAndRespawnCoroutine());
     }
 
     public void Damage(float damage)
@@ -46,5 +49,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             Die();
         }
+    }
+    
+    private IEnumerator DieAndRespawnCoroutine()
+    {
+        _playerMovement.enabled = false;
+        _animator.SetBool("Death", true);
+        
+        yield return new WaitForSeconds(0.25f);
+
+        _playerRespawn.Respawn();
+
+        _animator.SetBool("Death", false);
+        _playerMovement.enabled = true;
     }
 }
