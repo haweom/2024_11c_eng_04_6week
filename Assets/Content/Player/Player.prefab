@@ -90,6 +90,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee99ac81426d15149bd32e86ef161a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3168429358821466385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8665197384288064856}
+  m_Layer: 9
+  m_Name: AttackTransformDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8665197384288064856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3168429358821466385}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4600881231847678726}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4215375117805977604
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 7513284099396695164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.933, y: 0, z: 0}
+  m_LocalPosition: {x: 1.049, y: -0.156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,6 +287,7 @@ Transform:
   - {fileID: 7289685389348223572}
   - {fileID: 2200854760732802593}
   - {fileID: 9170578983977922949}
+  - {fileID: 8665197384288064856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &49686425918391157
@@ -385,6 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isGrounded: 0
+  _enabled: 0
   speed: 5
   jumpForce: 7
   coyoteTime: 0.5
@@ -425,12 +458,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   knockback: 2
-  attackSpeed: 0.2
+  attackSpeed: 0.3
   attackTransform: {fileID: 7289685389348223572}
+  attackDownTransform: {fileID: 8665197384288064856}
   attackRange: 0.5
   attackableLayer:
     serializedVersion: 2
     m_Bits: 128
+  attackStroke1: {fileID: 1044551244272969632, guid: e154d26f24b15d24fb5d898589b7c459, type: 3}
+  attackStroke2: {fileID: 2323868854567495073, guid: b5e6d83f4c5569c45a2af8b6f4a3d918, type: 3}
+  attackStroke3: {fileID: 6472976006631466280, guid: 20c8f6a5c4846e84f8909e4f5f64146e, type: 3}
+  airStroke1: {fileID: 5980307919456186715, guid: d7af854c02510c6459db7d157e67f31f, type: 3}
+  airStroke2: {fileID: 5534342055161188673, guid: 89b9407881c3e1d4e8846e765130ef84, type: 3}
 --- !u!114 &2854669837962569055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  _playerMovement: {fileID: 5893059774367488778}
   healthBar: {fileID: 0}
 --- !u!114 &7410401955493025209
 MonoBehaviour:

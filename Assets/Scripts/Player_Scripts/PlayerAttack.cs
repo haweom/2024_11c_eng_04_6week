@@ -14,6 +14,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private LayerMask attackableLayer;
     
+    [SerializeField] private GameObject attackStroke1;
+    [SerializeField] private GameObject attackStroke2;
+    [SerializeField] private GameObject attackStroke3;
+
+    [SerializeField] private GameObject airStroke1;
+    [SerializeField] private GameObject airStroke2;
+    
     private RaycastHit2D[] _hits;
     private Animator _animator;
 
@@ -35,9 +42,32 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
         {
             int randomNumber = UnityEngine.Random.Range(1, 4);
-            if (randomNumber == 1) _animator.SetBool("Attack-1", true);
-            if (randomNumber == 2) _animator.SetBool("Attack-2", true);
-            if (randomNumber == 3) _animator.SetBool("Attack-3", true);
+            GameObject effect = null;
+            
+            if (randomNumber == 1)
+            {
+                _animator.SetBool("Attack-1", true);
+                effect = Instantiate(attackStroke1, attackTransform.position, attackTransform.rotation);
+            }
+
+            if (randomNumber == 2)
+            {
+                _animator.SetBool("Attack-2", true);
+                effect = Instantiate(attackStroke2, attackTransform.position, attackTransform.rotation);
+            }
+
+            if (randomNumber == 3)
+            {
+                _animator.SetBool("Attack-3", true);
+                effect = Instantiate(attackStroke3, attackTransform.position, attackTransform.rotation);
+            }
+            
+            if (effect != null && transform.localScale.x < 0)
+            {
+                Vector3 effectScale = effect.transform.localScale;
+                effectScale.x *= -1;
+                effect.transform.localScale = effectScale;
+            }
             
             _attackTimeCounter = 0f;
             Attack();
@@ -45,15 +75,27 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
         {
+            GameObject effect = null;
+            
             if (_fallAttackCounter == 1)
             {
                 _animator.SetBool("FallAttack-1", true);
+                effect = Instantiate(airStroke1, attackDownTransform.position, attackDownTransform.rotation);
             }
             if (_fallAttackCounter == 2)
             {
                 _animator.SetBool("FallAttack-2", true);
+                effect = Instantiate(airStroke2, attackDownTransform.position, attackDownTransform.rotation);
                 _fallAttackCounter = 0;
             }
+            
+            if (effect != null && transform.localScale.x < 0)
+            {
+                Vector3 effectScale = effect.transform.localScale;
+                effectScale.x *= -1;
+                effect.transform.localScale = effectScale;
+            }
+            
             _attackTimeCounter = 0f;
             fallAttack();
             _fallAttackCounter++;
