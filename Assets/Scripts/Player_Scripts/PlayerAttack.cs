@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackSpeed = 0.2f;
     
     [SerializeField] private Transform attackTransform;
+    [SerializeField] private Transform attackDownTransform;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private LayerMask attackableLayer;
     
@@ -42,7 +43,12 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
         {
+            int randomNumber = UnityEngine.Random.Range(1, 3);
+            if (randomNumber == 1) _animator.SetBool("FallAttack-1", true);
+            if (randomNumber == 2) _animator.SetBool("FallAttack-2", true);
             
+            _attackTimeCounter = 0f;
+            fallAttack();
         }
         _attackTimeCounter += Time.deltaTime;
     }
@@ -75,7 +81,28 @@ public class PlayerAttack : MonoBehaviour
 
     private void fallAttack()
     {
+        _hits = Physics2D.CircleCastAll(attackDownTransform.position, attackRange, Vector2.down, 0f);
         
+        for (int i = 0; i < _hits.Length; i++)
+        {
+            if (_hits[i].collider.CompareTag("Player"))
+                continue;
+            
+            IDamageable damageable = _hits[i].collider.gameObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.Damage(damage);
+
+                Rigidbody2D enemyRb = _hits[i].collider.gameObject.GetComponent<Rigidbody2D>();
+                if (enemyRb != null)
+                {
+                    Vector2 knockbackDirection = _hits[i].transform.position - transform.position;
+                    knockbackDirection.Normalize();
+                    
+                    enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+                }
+            }
+        }
     }
 
     public void SetIsFalling(bool isFalling)
@@ -97,6 +124,7 @@ public class PlayerAttack : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackTransform.position, attackRange);
+        Gizmos.DrawWireSphere(attackDownTransform.position, attackRange);
     }
 
     public void StopAttackAnimation()
@@ -104,5 +132,8 @@ public class PlayerAttack : MonoBehaviour
         _animator.SetBool("Attack-1", false);
         _animator.SetBool("Attack-2", false);
         _animator.SetBool("Attack-3", false);
+        _animator.SetBool("FallAttack-1", false);
+        _animator.SetBool("FallAttack-2", false);
     }
+    
 }
