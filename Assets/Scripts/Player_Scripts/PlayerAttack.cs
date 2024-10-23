@@ -31,7 +31,11 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
         {
-            _animator.SetBool("Attack-1", true);
+            int randomNumber = UnityEngine.Random.Range(1, 4);
+            if (randomNumber == 1) _animator.SetBool("Attack-1", true);
+            if (randomNumber == 2) _animator.SetBool("Attack-2", true);
+            if (randomNumber == 3) _animator.SetBool("Attack-3", true);
+            
             _attackTimeCounter = 0f;
             Attack();
         }
@@ -98,5 +102,7 @@ public class PlayerAttack : MonoBehaviour
     public void StopAttackAnimation()
     {
         _animator.SetBool("Attack-1", false);
+        _animator.SetBool("Attack-2", false);
+        _animator.SetBool("Attack-3", false);
     }
 }
