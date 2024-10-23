@@ -36,7 +36,10 @@ public class GraplingHook : MonoBehaviour
 
     public void OnDestroy()
     {
-        _playerRb.drag = 0.0f;
+        if (_playerRb != null)
+        {
+            _playerRb.drag = 0.0f;
+        }
     }
 
     private void Update()
