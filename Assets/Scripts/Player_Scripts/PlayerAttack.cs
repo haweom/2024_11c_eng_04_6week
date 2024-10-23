@@ -8,19 +8,19 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float knockback;
     [SerializeField] private float attackSpeed = 0.2f;
-    
+
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Transform attackDownTransform;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private LayerMask attackableLayer;
-    
+
     [SerializeField] private GameObject attackStroke1;
     [SerializeField] private GameObject attackStroke2;
     [SerializeField] private GameObject attackStroke3;
 
     [SerializeField] private GameObject airStroke1;
     [SerializeField] private GameObject airStroke2;
-    
+
     private RaycastHit2D[] _hits;
     private Animator _animator;
 
@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
         _attackTimeCounter = attackSpeed;
         _fallAttackCounter = 1;
     }
-    
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
@@ -52,6 +52,7 @@ public class PlayerAttack : MonoBehaviour
             _attackTimeCounter = 0f;
             fallAttack();
         }
+
         _attackTimeCounter += Time.deltaTime;
     }
 
@@ -59,7 +60,7 @@ public class PlayerAttack : MonoBehaviour
     {
         int randomNumber = UnityEngine.Random.Range(1, 4);
         GameObject effect = null;
-            
+
         if (randomNumber == 1)
         {
             _animator.SetBool("Attack-1", true);
@@ -77,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
             _animator.SetBool("Attack-3", true);
             effect = Instantiate(attackStroke3, attackTransform.position, attackTransform.rotation);
         }
-            
+
         if (effect != null && transform.localScale.x < 0)
         {
             Vector3 effectScale = effect.transform.localScale;
@@ -89,37 +90,39 @@ public class PlayerAttack : MonoBehaviour
     private void AirAnimation()
     {
         GameObject effect = null;
-            
+
         if (_fallAttackCounter == 1)
         {
             _animator.SetBool("FallAttack-1", true);
             effect = Instantiate(airStroke1, attackDownTransform.position, attackDownTransform.rotation);
         }
+
         if (_fallAttackCounter == 2)
         {
             _animator.SetBool("FallAttack-2", true);
             effect = Instantiate(airStroke2, attackDownTransform.position, attackDownTransform.rotation);
             _fallAttackCounter = 0;
         }
-            
+
         if (effect != null && transform.localScale.x < 0)
         {
             Vector3 effectScale = effect.transform.localScale;
             effectScale.x *= -1;
             effect.transform.localScale = effectScale;
         }
+
         _fallAttackCounter++;
     }
 
     private void Attack()
     {
         _hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f);
-        
+
         for (int i = 0; i < _hits.Length; i++)
         {
             if (_hits[i].collider.CompareTag("Player"))
                 continue;
-            
+
             IDamageable damageable = _hits[i].collider.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
@@ -130,7 +133,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Vector2 knockbackDirection = _hits[i].transform.position - transform.position;
                     knockbackDirection.Normalize();
-                    
+
                     enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
                 }
             }
@@ -140,12 +143,12 @@ public class PlayerAttack : MonoBehaviour
     private void fallAttack()
     {
         _hits = Physics2D.CircleCastAll(attackDownTransform.position, attackRange, Vector2.down, 0f);
-        
+
         for (int i = 0; i < _hits.Length; i++)
         {
             if (_hits[i].collider.CompareTag("Player"))
                 continue;
-            
+
             IDamageable damageable = _hits[i].collider.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
@@ -156,7 +159,7 @@ public class PlayerAttack : MonoBehaviour
                 {
                     Vector2 knockbackDirection = _hits[i].transform.position - transform.position;
                     knockbackDirection.Normalize();
-                    
+
                     enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
                 }
             }
@@ -193,5 +196,4 @@ public class PlayerAttack : MonoBehaviour
         _animator.SetBool("FallAttack-1", false);
         _animator.SetBool("FallAttack-2", false);
     }
-    
 }
