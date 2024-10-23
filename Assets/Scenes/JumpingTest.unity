@@ -4104,6 +4104,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6939209781697779289, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
+      propertyPath: attackSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939209781697779289, guid: 86721938423dc6047bbd04ba562f1acf, type: 3}
       propertyPath: attackDownTransform
       value: 
       objectReference: {fileID: 2051950086}
