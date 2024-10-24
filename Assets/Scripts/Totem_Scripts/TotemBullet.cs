@@ -37,7 +37,8 @@ public class TotemBullet : MonoBehaviour
             damageable.Damage(damage);
             Destroy(this.gameObject);
         }
-        else
+
+        if (other.CompareTag("Ground"))
         {
             Destroy(this.gameObject);
         }
