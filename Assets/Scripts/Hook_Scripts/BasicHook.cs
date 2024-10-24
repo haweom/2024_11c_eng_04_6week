@@ -12,6 +12,7 @@ public class GraplingHook : MonoBehaviour
 
     [SerializeField] private float maxDistance;
     [SerializeField] private float climbSpeed;
+    [SerializeField] private float dragAmount;
     private Vector2 _startingPosition;
     private SpringJoint2D _joint;
     private bool _isAttached;
@@ -33,6 +34,14 @@ public class GraplingHook : MonoBehaviour
         _joint.enableCollision = true;
     }
 
+    public void OnDestroy()
+    {
+        if (_playerRb != null)
+        {
+            _playerRb.drag = 0.0f;
+        }
+    }
+
     private void Update()
     {
         float distanceTraveled = Vector2.Distance(_playerRb.transform.position, transform.position);
@@ -50,6 +59,8 @@ public class GraplingHook : MonoBehaviour
         {
             _joint.connectedBody = _playerRb;
             _joint.enabled = true;
+
+            _playerRb.drag = dragAmount;
             
             float verticalInput = Input.GetAxis("Vertical");
             if (verticalInput != 0)

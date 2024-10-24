@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private bool _jumping;
     private bool _falling;
     private float _xInput;
+    private PlayerAttack _playerAttack;
+    public bool _enabled;
 
     [SerializeField] private float speed = 7.5f;
 
@@ -30,21 +32,27 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _playerAttack = GetComponent<PlayerAttack>();
+        _enabled = true;
     }
 
     private void Update()
     {
-        _xInput = Input.GetAxis("Horizontal");
-        _isGrounded = groundDetector.GroundCheck();
-        
-        PlayerDirectionChanger();
+        if (_enabled)
+        {
+            _xInput = Input.GetAxis("Horizontal");
+            _isGrounded = groundDetector.GroundCheck();
+            _playerAttack.SetIsFalling(!_isGrounded);
 
-        AnimationChecker();
-        AnimationSetter();
+            PlayerDirectionChanger();
 
-        Coyote();
+            AnimationChecker();
+            AnimationSetter();
 
-        JumpBuffer();
+            Coyote();
+
+            JumpBuffer();
+        }
     }
 
     private void FixedUpdate()
@@ -158,41 +166,67 @@ public class PlayerMovement : MonoBehaviour
 
     private void AnimationSetter()
     {
-        if (_jumping)
+        //Animations Without Sword
+        if (!_playerAttack.GetHasSword())
         {
-            _animator.SetBool("Jump", true);
-        }
-        else
-        {
-            _animator.SetBool("Jump", false);
+            if (_jumping)
+            {
+                _animator.SetBool("Jump", true);
+            }
+            else
+            {
+                _animator.SetBool("Jump", false);
+            }
+
+            if (_running)
+            {
+                _animator.SetBool("running", true);
+            }
+            else
+            {
+                _animator.SetBool("running", false);
+            }
+
+            if (_falling)
+            {
+                _animator.SetBool("Fall", true);
+            }
+            else
+            {
+                _animator.SetBool("Fall", false);
+            }
         }
 
-        if (_running)
+        //Animations with sword
+        if (_playerAttack.GetHasSword())
         {
-            _animator.SetBool("running", true);
-        }
-        else
-        {
-            _animator.SetBool("running", false);
-        }
+            if (_jumping)
+            {
+                _animator.SetBool("JumpSword", true);
+            }
+            else
+            {
+                _animator.SetBool("JumpSword", false);
+            }
 
-        if (_falling)
-        {
-            _animator.SetBool("Fall", true);
+            if (_running)
+            {
+                _animator.SetBool("runningSword", true);
+            }
+            else
+            {
+                _animator.SetBool("runningSword", false);
+            }
+
+            if (_falling)
+            {
+                _animator.SetBool("FallSword", true);
+            }
+            else
+            {
+                _animator.SetBool("FallSword", false);
+            }
         }
-        else
-        {
-            _animator.SetBool("Fall", false);
-        }
-        
-        /*if(_isGrounded)
-        {
-            _animator.SetBool("Grounded", true);
-        }
-        else
-        {
-            _animator.SetBool("Grounded", false);
-        }*/
     }
     
     private void OnCollisionEnter2D(Collision2D other)
