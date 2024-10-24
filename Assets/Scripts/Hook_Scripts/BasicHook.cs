@@ -51,6 +51,14 @@ public class GraplingHook : MonoBehaviour
             Destroy(gameObject);
         }
 
+        // <Hook rotator
+        Vector2 direction = _player.transform.position - transform.position;
+        
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        // >
+        
         _lineRenderer.enabled = true;
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, _player.transform.position);
