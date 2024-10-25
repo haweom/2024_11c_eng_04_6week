@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyClass : MonoBehaviour, IDamageable
@@ -19,6 +19,8 @@ public class EnemyClass : MonoBehaviour, IDamageable
     [SerializeField] private float damage = 10f;
     [SerializeField] private float attackRange = 2f;
 
+    [SerializeField] private VisionDetectorScript visionDetectorScript; 
+    
     private bool _alive;
     private bool _patrol;
     private bool _chase;
@@ -31,14 +33,16 @@ public class EnemyClass : MonoBehaviour, IDamageable
     
     private void Start()
     {
-        _xInput = -1;
+        _xInput = 1;
         currentHealth = maxHealth;
         _alive = true;
     }
-
     
     private void Update()
     {
+        //
+       
+        //
         if (_alive && !attacking)
         {
             _running = _xInput != 0 && !hit;
@@ -56,15 +60,18 @@ public class EnemyClass : MonoBehaviour, IDamageable
     {
         if (_alive)
         {
+            attacking = visionDetectorScript.AttackRayCast(_rb, _xInput);
+            visionDetectorScript.VisionRayCast(_rb);
+            
             if (attacking) //tmp loop for attacking tests
             {
                 Attack();
             }
             else
             {
-                DirectionChanger();
                 if (_running)
                 {
+                    DirectionChanger();
                     Movement();
                 }
                 if (currentHealth <= 0)
@@ -104,7 +111,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        //Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
     //Movement:
@@ -145,6 +152,5 @@ public class EnemyClass : MonoBehaviour, IDamageable
             _animator.SetTrigger("Hit");
         }
     }
-    
     
 }
