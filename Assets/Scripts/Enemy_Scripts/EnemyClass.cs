@@ -78,6 +78,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
                 {
                     _xInput = 0;
                     Movement();
+                    // TODO: chase here
                 }
                 if (currentHealth <= 0)
                 {
