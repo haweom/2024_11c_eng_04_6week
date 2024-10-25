@@ -32,12 +32,14 @@ public class VisionDetectorScript : MonoBehaviour
             //Debug.Log(ray.transform.root.gameObject);
             if (ray.collider.CompareTag("Player"))
             {
-                Debug.DrawRay(rb.transform.position, (_player.transform.position - rb.transform.position), Color.cyan);
+                Debug.DrawRay(rb.transform.position,
+                    (_player.transform.position - rb.transform.position), Color.cyan);
+                return true;
             }
         }
-        
-        
-        return _isPlayer;
+
+
+        return false;
     }
     
     public bool AttackRayCast(Rigidbody2D rb, float direction)
