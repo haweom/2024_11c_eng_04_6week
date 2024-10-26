@@ -393,6 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftDetector: {fileID: 2641336217059261829}
   speed: 2
+  jumpForce: 5
   hit: 0
   attacking: 0
   maxHealth: 50
@@ -400,6 +401,7 @@ MonoBehaviour:
   damage: 0
   attackRange: 2
   visionDetectorScript: {fileID: 7280213393627743039}
+  chaseTime: 2.5
 --- !u!95 &2605455763951243669
 Animator:
   serializedVersion: 5

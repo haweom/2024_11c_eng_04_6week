@@ -8,8 +8,9 @@ public class EnemyClass : MonoBehaviour, IDamageable
     [SerializeField] private LeftRightDetector leftDetector;
     
     private float _xInput;
-    [SerializeField] private float speed = 5;
+    [SerializeField] private float speed = 5f;
     private bool _running;
+    [SerializeField] private float jumpForce = 5f;
     public bool hit;
     [SerializeField] public bool attacking;
 
@@ -20,6 +21,9 @@ public class EnemyClass : MonoBehaviour, IDamageable
     [SerializeField] private float attackRange = 2f;
 
     [SerializeField] private VisionDetectorScript visionDetectorScript; 
+    private GameObject _player;
+    [SerializeField] private float chaseTime = 2.5f;
+    private float _chaseCounter;
     
     private bool _alive;
     private bool _patrol;
@@ -29,6 +33,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
     
     private void Start()
@@ -40,12 +45,24 @@ public class EnemyClass : MonoBehaviour, IDamageable
     
     private void Update()
     {
-        //
-       
-        //
+        if (visionDetectorScript.VisionRayCast(_rb))
+        {
+            _chase = true;
+            _chaseCounter = chaseTime;
+        }
+        else if (_chase)
+        {
+            _chaseCounter -= Time.deltaTime;
+            if (_chaseCounter <= 0)
+            {
+                _chase = false;
+            }
+        }
+        
+        AnimationCheck();
         if (_alive && !attacking)
         {
-            _running = _xInput != 0 && !hit;
+            _patrol = !hit && !_chase;
 
             if (!leftDetector.GroundCheck())
             {
@@ -61,7 +78,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
         if (_alive)
         {
             attacking = visionDetectorScript.AttackRayCast(_rb, _xInput);
-            visionDetectorScript.VisionRayCast(_rb);
+            
             
             if (attacking) //tmp loop for attacking tests
             {
@@ -69,10 +86,17 @@ public class EnemyClass : MonoBehaviour, IDamageable
             }
             else
             {
-                if (_running)
+                if (_patrol)
                 {
-                    DirectionChanger();
+                    _xInput = _xInput == 0?  transform.localScale.x : _xInput;
                     Movement();
+                }
+
+                if (_chase)
+                {
+                    _xInput = 0;
+                    Chase();
+                    
                 }
                 if (currentHealth <= 0)
                 {
@@ -117,7 +141,31 @@ public class EnemyClass : MonoBehaviour, IDamageable
     //Movement:
     private void Movement()
     {
+        DirectionChanger();
         _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
+    }
+
+    private void Chase()
+    {
+        if (_player.transform.position.x - transform.position.x > 0)
+        {
+            _xInput = 1;
+        }
+        else
+        {
+            _xInput = -1;
+        }
+        bool jump = visionDetectorScript.JumpRayCast(_rb, _xInput);
+        if (jump)
+        {
+            Jump();
+        }
+        Movement();
+    }
+
+    private void Jump()
+    {
+        _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
     }
     private void DirectionChanger()
     {
@@ -130,11 +178,20 @@ public class EnemyClass : MonoBehaviour, IDamageable
             transform.localScale = new Vector2(-1f, 1f);
         }
 
+        if (_xInput == 0)
+        {
+            _xInput = transform.localScale.x;
+        }
+        
         if (_rb.velocity.x == 0)
         {
-            float t = transform.localScale.z * -1f;
-            transform.localScale = new Vector2(t, 1f);
+            _xInput *= -1f;
         }
+    }
+
+    private void AnimationCheck()
+    {
+        _running = _rb.velocity.x != 0;
     }
     
     private void AnimationSetter()
