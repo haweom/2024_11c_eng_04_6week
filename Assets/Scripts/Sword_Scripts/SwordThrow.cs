@@ -12,6 +12,7 @@ public class SwordThrow : MonoBehaviour
     [SerializeField] private float timeBeforeSwordReturning;
 
     private float returnSpeed = 10f;
+    private SpriteRenderer _swordSpriteRenderer;
     private Rigidbody2D _swordRb;
     private Transform _parentTransform;
     private Transform _player;
@@ -25,6 +26,7 @@ public class SwordThrow : MonoBehaviour
         _isFlying = true;
         _swordRb = GetComponentInParent<Rigidbody2D>();
         _parentTransform = transform.parent;
+        _swordSpriteRenderer = GetComponentInParent<SpriteRenderer>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(ReturnTimer());
     }
@@ -71,6 +73,8 @@ public class SwordThrow : MonoBehaviour
 
     private void ReturnToPlayer()
     {
+        _swordSpriteRenderer.sortingOrder = 101;
+        
         Vector2 directionToPlayer = (_player.position - transform.position).normalized;
         float distanceToPlayer = Vector2.Distance(transform.position, _player.position);
         
