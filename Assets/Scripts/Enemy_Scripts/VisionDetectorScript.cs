@@ -12,12 +12,31 @@ public class VisionDetectorScript : MonoBehaviour
 
     private void Start()
     {
-        attackRange = 2.5f;
+        attackRange = 1.5f;
         visionRange = 7.5f;
         _isPlayer = false;
         _player = GameObject.FindGameObjectWithTag("Player");
     }
 
+
+    public bool JumpRayCast(Rigidbody2D rb, float direction)
+    { //Mundek dundek tu był
+        RaycastHit2D ray = Physics2D.Raycast(rb.transform.position,
+            new Vector2(direction, 0f), 1f, LayerMask.GetMask("Ground"));
+        Debug.DrawRay(new Vector3(rb.transform.position.x,rb.transform.position.y + 0.25f),
+            new Vector2(direction, 0) * 1f, Color.green);
+
+        if (ray.collider != null)
+        {
+            if (ray.collider.CompareTag("Ground"))
+            {
+                //Debug.Log(ray.collider.transform.root.gameObject);
+                return true;
+            }
+        }
+        
+        return false;
+    }
     
     public bool VisionRayCast(Rigidbody2D rb)
     {
