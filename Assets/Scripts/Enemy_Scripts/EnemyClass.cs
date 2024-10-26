@@ -12,18 +12,23 @@ public class EnemyClass : MonoBehaviour, IDamageable
     private bool _running;
     [SerializeField] private float jumpForce = 5f;
     public bool hit;
-    [SerializeField] public bool attacking;
+    public bool attacking;
+    private bool _jumping;
+    private bool _falling;
+    private bool _isGrounded;
 
     [SerializeField] private float maxHealth = 50f;
     public float currentHealth;
     private Collider2D[] _attackCollider;
     [SerializeField] private float damage = 10f;
-    [SerializeField] private float attackRange = 2f;
+    [SerializeField] private float attackRange = 0.75f;
 
     [SerializeField] private VisionDetectorScript visionDetectorScript; 
     private GameObject _player;
     [SerializeField] private float chaseTime = 2.5f;
     private float _chaseCounter;
+    [SerializeField] private float attackCd = 2f;
+    private float _attackCounter;
     
     private bool _alive;
     private bool _patrol;
@@ -41,6 +46,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
         _xInput = 1;
         currentHealth = maxHealth;
         _alive = true;
+        _attackCounter = 0;
     }
     
     private void Update()
@@ -59,7 +65,20 @@ public class EnemyClass : MonoBehaviour, IDamageable
             }
         }
         
-        AnimationCheck();
+        if (_attackCounter > 0)
+        {
+            _attackCounter -= Time.deltaTime;
+        }
+
+        if (_attackCounter <= 0)
+        {
+            if (visionDetectorScript.AttackRayCast(_rb, _xInput))
+            {
+                attacking = true;
+                _attackCounter = attackCd;
+            }
+        }
+        
         if (_alive && !attacking)
         {
             _patrol = !hit && !_chase;
@@ -68,20 +87,24 @@ public class EnemyClass : MonoBehaviour, IDamageable
             {
                 _xInput *= -1;
             }
-            
-            AnimationSetter();
         }
+
+        if (!_alive)
+        {
+            
+        }
+        AnimationCheck();
+        AnimationSetter();
     }
 
     private void FixedUpdate()
     {
         if (_alive)
         {
-            attacking = visionDetectorScript.AttackRayCast(_rb, _xInput);
-            
             
             if (attacking) //tmp loop for attacking tests
             {
+                attacking = false;
                 Attack();
             }
             else
@@ -121,8 +144,10 @@ public class EnemyClass : MonoBehaviour, IDamageable
 
     private void Attack()
     {
+        float side = _xInput >= 0 ? 1 : -1;
         _animator.SetTrigger("Attacking");
-        _attackCollider = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        _attackCollider = Physics2D.OverlapCircleAll(
+            new Vector2(transform.position.x + side,transform.position.y), attackRange);
 
         foreach (Collider2D o in _attackCollider)
         {
@@ -135,7 +160,8 @@ public class EnemyClass : MonoBehaviour, IDamageable
     }
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawWireSphere(transform.position, attackRange);
+        float side = _xInput >= 0 ? 1 : -1;
+        Gizmos.DrawWireSphere( new Vector2(transform.position.x + side,transform.position.y), attackRange);
     }
 
     //Movement:
@@ -147,6 +173,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
 
     private void Chase()
     {
+        _jumping = false;
         if (_player.transform.position.x - transform.position.x > 0)
         {
             _xInput = 1;
@@ -155,8 +182,8 @@ public class EnemyClass : MonoBehaviour, IDamageable
         {
             _xInput = -1;
         }
-        bool jump = visionDetectorScript.JumpRayCast(_rb, _xInput);
-        if (jump)
+        _jumping = visionDetectorScript.JumpRayCast(_rb, _xInput);
+        if (_jumping)
         {
             Jump();
         }
@@ -192,6 +219,30 @@ public class EnemyClass : MonoBehaviour, IDamageable
     private void AnimationCheck()
     {
         _running = _rb.velocity.x != 0;
+        
+        if (!_isGrounded)
+        {
+            if (_rb.velocity.y < 0)
+            {
+                _falling = true;
+                _jumping = false;
+            }
+            else if(_rb.velocity.y > 0)
+            {
+                _jumping = true;
+                _falling = false;
+            }
+            else
+            {
+                _jumping = false;
+                _falling = false;
+            }
+        }
+        else
+        {
+            _falling = false;
+            _jumping = false;
+        }
     }
     
     private void AnimationSetter()
@@ -207,6 +258,40 @@ public class EnemyClass : MonoBehaviour, IDamageable
         if (hit)
         {
             _animator.SetTrigger("Hit");
+        }
+
+        if (_jumping)
+        {
+            _animator.SetBool("Jump", true);
+        }
+        else
+        {
+            _animator.SetBool("Jump", false);
+        }
+        
+        if (_falling)
+        {
+            _animator.SetBool("Fall", true);
+        }
+        else
+        {
+            _animator.SetBool("Fall", false);
+        }
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = false;
         }
     }
     
