@@ -41,10 +41,6 @@ public class SwordThrow : MonoBehaviour
         {
             ReturnToPlayer();
         }
-        // else
-        // {
-        //     _isFlying = false;
-        // }
     }
     
     private void RotateSword()
