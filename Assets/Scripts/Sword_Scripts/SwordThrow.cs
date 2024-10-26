@@ -78,7 +78,7 @@ public class SwordThrow : MonoBehaviour
         _swordRb.velocity = directionToPlayer * speed;
         
         float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-        _parentTransform.rotation = Quaternion.Euler(0, 0, angle);
+        _parentTransform.rotation = Quaternion.Euler(0, 0, angle + 180f);
         
         if (Vector2.Distance(transform.position, _player.position) < 0.5f)
         {
