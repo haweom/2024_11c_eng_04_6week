@@ -188,6 +188,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void throwAttack()
     {
+        _animator.SetBool("hasSword", false);
+        
         Vector2 direction = GetMouseDirection();
         
         GameObject thrownSword = Instantiate(swordPrefab, throwPoint.position, Quaternion.identity);

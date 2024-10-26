@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwordThrow : MonoBehaviour
@@ -11,6 +13,9 @@ public class SwordThrow : MonoBehaviour
     private Rigidbody2D _swordRb;
     private Transform _parentTransform;
     private bool _isFlying;
+    private bool _isReturning;
+    
+    private HashSet<Collider2D> hasBeenHit = new HashSet<Collider2D>();
 
     private void Start()
     {
@@ -26,6 +31,10 @@ public class SwordThrow : MonoBehaviour
             RotateSword();
             
             DetectEnemiesInRange();
+        }
+        else
+        {
+            _isFlying = false;
         }
     }
     
@@ -44,16 +53,23 @@ public class SwordThrow : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.CompareTag("Player")) continue;
+            if (enemy.CompareTag("Player") || hasBeenHit.Contains(enemy)) continue;
 
             IDamageable damageable = enemy.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 damageable.Damage(damageAmount);
-                _isFlying = false;
-                break;
+                hasBeenHit.Add(enemy);
             }
         }
+    }
+    
+    private IEnumerator ReturnTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        
+        _isFlying = false;
+        _isReturning = true;
     }
 
     public void SetIsFlying(bool isFlying)
