@@ -8,6 +8,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float knockback;
     [SerializeField] private float attackSpeed = 0.2f;
+    
+    [SerializeField] private GameObject swordPrefab;
+    [SerializeField] private float throwSpeed;
+    [SerializeField] private Transform throwPoint;
+    [SerializeField] private float requiredButtonHoldTime;
+    private float holdTime;
 
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Transform attackDownTransform;
@@ -39,18 +45,32 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
+        if (Input.GetMouseButtonUp(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
         {
             GroundAnimation();
             _attackTimeCounter = 0f;
             Attack();
         }
 
-        if (Input.GetMouseButtonDown(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
+        if (Input.GetMouseButtonUp(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
         {
             AirAnimation();
             _attackTimeCounter = 0f;
             fallAttack();
+        }
+        
+        if (Input.GetMouseButton(0) && _hasSword)
+        {
+            holdTime += Time.deltaTime;
+            if (holdTime >= requiredButtonHoldTime)
+            {
+                throwAttack();
+                holdTime = 0f;
+            }
+        }
+        else
+        {
+            holdTime = 0f;
         }
 
         _attackTimeCounter += Time.deltaTime;
@@ -166,6 +186,19 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void throwAttack()
+    {
+        Vector2 direction = GetMouseDirection();
+        
+        GameObject thrownSword = Instantiate(swordPrefab, throwPoint.position, Quaternion.identity);
+        
+        Rigidbody2D thrownSwordRb = thrownSword.GetComponent<Rigidbody2D>();
+        
+        thrownSwordRb.velocity = direction * throwSpeed;
+
+        _hasSword = false;
+    }
+    
     public void SetIsFalling(bool isFalling)
     {
         _isFalling = isFalling;
@@ -186,6 +219,16 @@ public class PlayerAttack : MonoBehaviour
     {
         Gizmos.DrawWireSphere(attackTransform.position, attackRange);
         Gizmos.DrawWireSphere(attackDownTransform.position, attackRange);
+    }
+    
+    private Vector2 GetMouseDirection()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
+
+        Vector2 direction = (mousePosition - throwPoint.position).normalized;
+
+        return direction;
     }
 
     public void StopAttackAnimation()
