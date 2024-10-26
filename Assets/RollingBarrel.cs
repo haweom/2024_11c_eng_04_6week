@@ -19,12 +19,12 @@ public class RollingBarrel : MonoBehaviour
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             if (damageable != null)
-            {             
+            {
                 damageable.Damage(damage);
             }
             Destroy(gameObject);
         }
 
-      
+
     }
 }
