@@ -163,6 +163,7 @@ MonoBehaviour:
   damageAmount: 50
   swordCollider: {fileID: 8159881999817462835}
   throwDetectionRadius: 1
+  timeBeforeSwordReturning: 5
 --- !u!1 &6124967531271229143
 GameObject:
   m_ObjectHideFlags: 0
