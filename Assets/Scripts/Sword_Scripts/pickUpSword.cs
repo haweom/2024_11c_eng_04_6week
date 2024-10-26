@@ -19,7 +19,7 @@ public class pickUpSword : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && _swordThrow.IsReturning())
+        if (other.CompareTag("Player") && _swordThrow.IsReturning() || _rb2d.velocity == Vector2.zero)
         {
             _playerAttack.SetHasSword(true);
             Destroy(transform.parent.gameObject);
