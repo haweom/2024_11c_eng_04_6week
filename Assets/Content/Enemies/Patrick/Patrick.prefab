@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003743887, y: -0.43806842}
+  m_Offset: {x: -0.003743887, y: -0.53291774}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42339754, y: 0.12386316}
+  m_Size: {x: 0.42339754, y: 0.09838152}
   m_EdgeRadius: 0
 --- !u!114 &2185239241552811444
 MonoBehaviour:
@@ -201,7 +201,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.4130535, y: -0.34036744}
+  m_Offset: {x: -0.4130535, y: -0.35593963}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -212,7 +212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.07085419, y: 0.43685555}
+  m_Size: {x: 0.07085419, y: 0.46799994}
   m_EdgeRadius: 0
 --- !u!114 &2641336217059261829
 MonoBehaviour:
@@ -239,9 +239,9 @@ GameObject:
   - component: {fileID: 8256021921688962189}
   - component: {fileID: 5796251040389227361}
   - component: {fileID: 2657040021492526342}
-  - component: {fileID: 2605455763951243669}
+  - component: {fileID: 3485002286841519176}
   m_Layer: 8
-  m_Name: FierceTooth
+  m_Name: Patrick
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,7 +306,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 60f4be0b5c750414ca49fbecb93b14a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a20e3bcd139f044c8969ea6dd9b0a31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -377,7 +377,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.75, y: 1}
+  m_Size: {x: 0.75, y: 1.15}
   m_Direction: 0
 --- !u!114 &2657040021492526342
 MonoBehaviour:
@@ -398,12 +398,12 @@ MonoBehaviour:
   attacking: 0
   maxHealth: 50
   currentHealth: 0
-  damage: 10
+  damage: 0
   attackRange: 0.5
   visionDetectorScript: {fileID: 7280213393627743039}
   chaseTime: 2.5
   attackCd: 2
---- !u!95 &2605455763951243669
+--- !u!95 &3485002286841519176
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -413,7 +413,7 @@ Animator:
   m_GameObject: {fileID: 9034789115270296119}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7e265e9c0b748b946b2a2dc17805ce23, type: 2}
+  m_Controller: {fileID: 9100000, guid: 995cd0246c3084047ab55c8a235fd401, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
