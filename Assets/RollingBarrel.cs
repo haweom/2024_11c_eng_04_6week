@@ -22,9 +22,11 @@ public class RollingBarrel : MonoBehaviour
             {
                 damageable.Damage(damage);
             }
+            Destroy(gameObject); 
+        }
+        if (other.CompareTag("BarrelDestroyer"))
+        {
             Destroy(gameObject);
         }
-
-
     }
 }
