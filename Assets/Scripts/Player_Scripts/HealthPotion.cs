@@ -14,6 +14,16 @@ public class HealthPotion : MonoBehaviour
     {
         _playerHealth = GetComponent<PlayerHealth>();
     }
+    
+    public float Cooldown
+    {
+        get { return cooldown; }
+    }
+    
+    public float CooldownTimer
+    {
+        get { return _cooldownTimer; }
+    }
 
     void Update()
     {

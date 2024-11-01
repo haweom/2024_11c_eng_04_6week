@@ -7,18 +7,32 @@ public class BombThrow : MonoBehaviour
 {
     [SerializeField] private GameObject bomb;
     [SerializeField] private Transform bombGun;
+    [SerializeField] private float cooldownTime = 10f;
+    
     private GameObject _thrown;
     private float _strength;
+    private float _nextThrowTime;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (_thrown == null)
+            if (_thrown == null && Time.time >= _nextThrowTime)
             {
                 Throw();
+                _nextThrowTime = Time.time + cooldownTime;
             }
         }
+    }
+    
+    public float CooldownTime
+    {
+        get { return cooldownTime; }
+    }
+    
+    public float NextThrowTime
+    {
+        get { return _nextThrowTime; }
     }
 
     private void Throw()
@@ -30,7 +44,6 @@ public class BombThrow : MonoBehaviour
         if (throwDirection)
         {
             script.direction = 1;
-            
         }
         else
         {
@@ -44,13 +57,8 @@ public class BombThrow : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         _strength = Math.Abs(mousePosition.x - bombGun.position.x);
-        _strength = _strength > 5 ? 1 : _strength/5;
-        
-        if (mousePosition.x - bombGun.position.x < 0)
-        {
-            return false;
-        }
+        _strength = _strength > 5 ? 1 : _strength / 5;
 
-        return true;
+        return mousePosition.x - bombGun.position.x >= 0;
     }
 }
