@@ -30,7 +30,9 @@ public class EnemyClass : MonoBehaviour, IDamageable
     [SerializeField] private float attackCd = 2f;
     private float _attackCounter;
 
-    [SerializeField] private bool epicPatrickMode = false; 
+    [SerializeField] private bool epicPatrickMode = false;
+    [SerializeField] private float patrickStun = 5f;
+    private float _patrickTimer = 0f;
     
     private bool _alive;
     private bool _patrol;
@@ -53,31 +55,34 @@ public class EnemyClass : MonoBehaviour, IDamageable
     
     private void Update()
     {
-        if (visionDetectorScript.VisionRayCast(_rb))
+        if (_alive)
         {
-            _chase = true;
-            _chaseCounter = chaseTime;
-        }
-        else if (_chase)
-        {
-            _chaseCounter -= Time.deltaTime;
-            if (_chaseCounter <= 0)
+            if (visionDetectorScript.VisionRayCast(_rb))
             {
-                _chase = false;
+                _chase = true;
+                _chaseCounter = chaseTime;
             }
-        }
-        
-        if (_attackCounter > 0)
-        {
-            _attackCounter -= Time.deltaTime;
-        }
-
-        if (_attackCounter <= 0)
-        {
-            if (visionDetectorScript.AttackRayCast(_rb, _xInput))
+            else if (_chase)
             {
-                attacking = true;
-                _attackCounter = attackCd;
+                _chaseCounter -= Time.deltaTime;
+                if (_chaseCounter <= 0)
+                {
+                    _chase = false;
+                }
+            }
+        
+            if (_attackCounter > 0)
+            {
+                _attackCounter -= Time.deltaTime;
+            }
+
+            if (_attackCounter <= 0)
+            {
+                if (visionDetectorScript.AttackRayCast(_rb, _xInput))
+                {
+                    attacking = true;
+                    _attackCounter = attackCd;
+                }
             }
         }
         
@@ -91,9 +96,14 @@ public class EnemyClass : MonoBehaviour, IDamageable
             }
         }
 
-        if (!_alive)
+        if (!_alive && epicPatrickMode)
         {
-            
+            _patrickTimer -= Time.deltaTime;
+            if (_patrickTimer <= 0)
+            {
+                _alive = true;
+                currentHealth = maxHealth;
+            }
         }
         AnimationCheck();
         AnimationSetter();
@@ -143,6 +153,14 @@ public class EnemyClass : MonoBehaviour, IDamageable
         _alive = false;
         _animator.SetTrigger("DeathHit");
         _rb.velocity = new Vector2(0, 0);
+        if (epicPatrickMode)
+        {
+            _patrickTimer = patrickStun;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Attack()
@@ -284,6 +302,19 @@ public class EnemyClass : MonoBehaviour, IDamageable
         else
         {
             _animator.SetBool("Fall", false);
+        }
+
+        if (epicPatrickMode)
+        {
+            if (_alive)
+            {
+                _animator.SetBool("Alive",true);
+            }
+            else
+            {
+                _animator.SetBool("Alive",false);
+
+            }
         }
     }
     
