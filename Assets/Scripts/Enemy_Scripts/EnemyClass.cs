@@ -29,6 +29,8 @@ public class EnemyClass : MonoBehaviour, IDamageable
     private float _chaseCounter;
     [SerializeField] private float attackCd = 2f;
     private float _attackCounter;
+
+    [SerializeField] private bool epicPatrickMode = false; 
     
     private bool _alive;
     private bool _patrol;
@@ -132,6 +134,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
     public void Damage(float damage)
     {
         currentHealth -= damage;
+        _animator.SetTrigger("Hit");
         hit = true;
     }
 
@@ -182,11 +185,16 @@ public class EnemyClass : MonoBehaviour, IDamageable
         {
             _xInput = -1;
         }
-        _jumping = visionDetectorScript.JumpRayCast(_rb, _xInput);
-        if (_jumping)
+
+        if (!epicPatrickMode)
         {
-            Jump();
+            _jumping = visionDetectorScript.JumpRayCast(_rb, _xInput);
+            if (_jumping)
+            {
+                Jump();
+            }
         }
+        
         Movement();
     }
 
@@ -257,7 +265,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
         }
         if (hit)
         {
-            _animator.SetTrigger("Hit");
+            //_animator.SetTrigger("Hit");
         }
 
         if (_jumping)

@@ -403,6 +403,7 @@ MonoBehaviour:
   visionDetectorScript: {fileID: 7280213393627743039}
   chaseTime: 2.5
   attackCd: 2
+  epicPatrickMode: 1
 --- !u!95 &3485002286841519176
 Animator:
   serializedVersion: 5
