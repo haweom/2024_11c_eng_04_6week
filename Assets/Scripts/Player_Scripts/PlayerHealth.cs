@@ -37,6 +37,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
     }
 
+    public void Regen(float regen)
+    {
+        if (_currentHealth + regen < maxHealth)
+        {
+            _currentHealth += regen;
+        }
+        else
+        {
+            _currentHealth = maxHealth;
+        }
+        healthBar.SetHealth(_currentHealth);
+    }
+
     public void setHealth(float health)
     {
         _currentHealth = health;

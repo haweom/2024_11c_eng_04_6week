@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 2854669837962569055}
   - component: {fileID: 7410401955493025209}
   - component: {fileID: 5334229872609667173}
+  - component: {fileID: 3489352126509020394}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -546,3 +547,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d76252250d8e442915c4a630ba166d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3489352126509020394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191185798738544414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4cbfc0053bf62a4eb8bcd4c954856f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regenValue: 20
+  cooldown: 5
