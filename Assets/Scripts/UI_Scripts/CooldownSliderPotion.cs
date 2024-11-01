@@ -22,7 +22,7 @@ public class CooldownSliderPotion : MonoBehaviour
     {
         if (healthPotion.CooldownTimer > 0)
         {
-            cooldownSlider.value = healthPotion.Cooldown - healthPotion.CooldownTimer; // Fill slider based on time spent
+            cooldownSlider.value = healthPotion.Cooldown - healthPotion.CooldownTimer;
             sliderFill.color = cooldownCharge;
         }
         else
