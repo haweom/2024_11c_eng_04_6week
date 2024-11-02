@@ -35,7 +35,7 @@ public class ShootBullet : MonoBehaviour
     public void Shoot()
     {
         _bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        Vector2 shotDirection = bulletSpawn.right;
+        Vector2 shotDirection = -bulletSpawn.right;
         shotDirection.Normalize();
         
         Rigidbody2D rb = _bullet.GetComponent<Rigidbody2D>();
