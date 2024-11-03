@@ -66781,18 +66781,6 @@ PrefabInstance:
       propertyPath: healthPotion
       value: 
       objectReference: {fileID: 6958841189608538183}
-    - target: {fileID: 3673475682349999580, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3673475682349999580, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 3673475682349999580, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
-      objectReference: {fileID: 0}
     - target: {fileID: 6451445419048640272, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
