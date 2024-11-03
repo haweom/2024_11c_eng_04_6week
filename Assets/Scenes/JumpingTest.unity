@@ -66728,6 +66728,14 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 6958841189608538189}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6933845541124797249, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

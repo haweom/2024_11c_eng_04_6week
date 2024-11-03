@@ -13,12 +13,42 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   dialogue:
+  - "Crab:\nHis palms are sweaty, \nknees weak, \narms are heavy"
+  - "Crab:\nThere's vomit on his sweater already, \nmom's spaghetti"
+  - "Crab:\nHe's nervous,\nbut on the surface, \nhe looks calm and ready"
+  - "Crab:\nTo drop bombs, \nbut he keeps on forgetting"
+  - "Crab:\nWhat he wrote down, \nthe whole crowd goes so loud"
+  - "Crab:\nHe opens his mouth, \nbut the words won't come out"
+  - "Crab:\nHe's chokin', how? \nEverybody's jokin' now"
+  - "Crab:\nThe clock's run out, \ntime's up, over, blaow"
+  - "Crab:\nSnap back to reality, \nope, \nthere goes gravity"
+  - "Crab:\nOpe, \nthere goes Rabbit, \nhe choked, \nhe's so mad"
+  - "Crab:\nBut he won't give up that easy, \nno, he won't have it"
+  - "Crab:\nHe knows his whole back's to these ropes, \nit don't matter"
+  - "Crab:\nHe's dope, he knows that, \nbut he's broke, \nhe's so stagnant"
+  - "Crab:\nHe knows when he goes back to this mobile home, \nthat's when it's"
+  - "Crab:\nBack to the lab again, \nyo, \nthis old rhapsody"
+  - "Crab:\nBetter go capture this moment \nand hope it don't pass him"
   - 'Crab:
 
-    Sraken Pierdaken'
+    You better lose yourself in the music
+
+    The moment, you own it, '
   - 'Crab:
 
-    Pierdaken Sraken'
-  - 'Olaf:
+    you better never let it go (Go)'
+  - "Crab:\nYou only get one shot, \ndo not miss your chance to blow\nThis opportunity
+    comes once in a lifetime, yo"
+  - 'Crab:
 
-    Kocham Pitorka'
+    You better lose yourself in the music
+
+    The moment, you own it, '
+  - 'Crab:
+
+    you better never let it go (Go)'
+  - "Crab:\nYou only get one shot, \ndo not miss your chance to blow\nThis opportunity
+    comes once in a lifetime, yo"
+  - 'Crab:
+
+    You better'
