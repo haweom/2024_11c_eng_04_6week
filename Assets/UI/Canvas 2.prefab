@@ -4205,8 +4205,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -455, y: -200}
-  m_SizeDelta: {x: 800, y: 400}
+  m_AnchoredPosition: {x: -455, y: -192.05887}
+  m_SizeDelta: {x: 800, y: 384.1177}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6826494358321614309
 MonoBehaviour:
@@ -4224,7 +4224,7 @@ MonoBehaviour:
   dialogueBox: {fileID: 3910877997775645122}
   canvas: {fileID: 1828581080724486369}
   moveSpeed: 400
-  testDialogue: {fileID: 11400000, guid: c66b4513f3b06f1418ba7feafd3f0c17, type: 2}
+  playerMovement: {fileID: 0}
 --- !u!114 &6908773173394540127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5453,11 +5453,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'New Text
 
-    200
+    New Text
 
-    200
+    New Text
 
-    200
+    New Text
+
+    New Text
 
 
 
@@ -5488,8 +5490,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
