@@ -66,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
             AerialMovement();
         }
         
+        if (!_enabled)
+        {
+            _rb.velocity = Vector2.zero;
+        }
+        
     }
 
     private void AerialMovement()

@@ -2,27 +2,27 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class NewBehaviourScript : MonoBehaviour
+public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private RectTransform dialogueBox;
     [SerializeField] private Canvas canvas;
     [SerializeField] private float moveSpeed = 100f;
+    [SerializeField] private PlayerMovement playerMovement;
+    //[SerializeField] private DialogueObject testDialogue;
     
-    [SerializeField] private DialogueObject testDialogue;
-
-    private bool isUp = false;
+    public bool IsOpen {get; private set;}
+    
     private TypeWriterEffect typeWriterEffect;
 
     private void Start()
     {
-        StartCoroutine(MoveUp());
         typeWriterEffect = GetComponent<TypeWriterEffect>();
-        showDialogue(testDialogue);
     }
 
     public void showDialogue(DialogueObject dialogueObject)
     {
+        StartCoroutine(MoveUp());
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
@@ -36,22 +36,10 @@ public class NewBehaviourScript : MonoBehaviour
         StartCoroutine(MoveDown());
     }
 
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            if (isUp)
-                StartCoroutine(MoveDown());
-            else
-            {
-                StartCoroutine(MoveUp());
-            }
-        }
-    }*/
-
     public IEnumerator MoveUp()
     {
-        isUp = true;
+        IsOpen = true;
+        playerMovement._enabled = false;
         float canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
         float dialogueBoxHeight = dialogueBox.rect.height;
         
@@ -68,8 +56,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     public IEnumerator MoveDown()
     {
-        isUp = false;
-        
+        IsOpen = false;
+        playerMovement._enabled = true;
         Vector2 startPosition = new Vector2(dialogueBox.anchoredPosition.x, dialogueBox.anchoredPosition.y - dialogueBox.rect.height);
 
         while (dialogueBox.anchoredPosition.y > startPosition.y)
