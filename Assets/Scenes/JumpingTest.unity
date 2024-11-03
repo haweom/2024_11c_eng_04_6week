@@ -66720,6 +66720,46 @@ PrefabInstance:
       propertyPath: healthPotion
       value: 
       objectReference: {fileID: 6958841189608538183}
+    - target: {fileID: 2586984384722479068, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 27.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2165e3b74630e9447abc62e28d7f9ea7, type: 2}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.2392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.19607845
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.20000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1724900677143105301, guid: 2165e3b74630e9447abc62e28d7f9ea7, type: 2}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4282200627
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894732974610745811, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6451445419048640272, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -66741,8 +66781,36 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2165e3b74630e9447abc62e28d7f9ea7, type: 2}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.2392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.19607845
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.20000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
       propertyPath: m_fontSizeBase
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1724900677143105301, guid: 2165e3b74630e9447abc62e28d7f9ea7, type: 2}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4282200627
+      objectReference: {fileID: 0}
+    - target: {fileID: 6870813019983038574, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6933845541124797249, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
       propertyPath: m_AnchorMax.x
