@@ -66764,6 +66764,10 @@ PrefabInstance:
       propertyPath: bombThrow
       value: 
       objectReference: {fileID: 1274998758}
+    - target: {fileID: 9175888329715553815, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 142.06
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
