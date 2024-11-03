@@ -56,7 +56,6 @@ public class DialogueUI : MonoBehaviour
 
     public IEnumerator MoveDown()
     {
-        IsOpen = false;
         playerMovement._enabled = true;
         Vector2 startPosition = new Vector2(dialogueBox.anchoredPosition.x, dialogueBox.anchoredPosition.y - dialogueBox.rect.height);
 
@@ -68,5 +67,6 @@ public class DialogueUI : MonoBehaviour
 
         dialogueBox.anchoredPosition = startPosition;
         textLabel.text = string.Empty;
+        IsOpen = false;
     }
 }
