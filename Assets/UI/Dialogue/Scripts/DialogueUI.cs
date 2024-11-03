@@ -30,6 +30,7 @@ public class DialogueUI : MonoBehaviour
     {
         foreach (string dialogue in dialogueObject.Dialogue)
         {
+            textLabel.text = string.Empty;
             yield return typeWriterEffect.Run(dialogue, textLabel);
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
         }
