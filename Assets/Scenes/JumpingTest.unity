@@ -66303,6 +66303,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8828294215853580022, guid: 3f967c9ec2996154b8aeb1522586c131, type: 3}
+      propertyPath: dialogueObject
+      value: 
+      objectReference: {fileID: 11400000, guid: c66b4513f3b06f1418ba7feafd3f0c17, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -66724,6 +66728,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6826494358321614309, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
+      propertyPath: virtualCamera
+      value: 
+      objectReference: {fileID: 1355300242}
     - target: {fileID: 6826494358321614309, guid: 7d9c0affe9a4d5643ba8bc38c5b01362, type: 3}
       propertyPath: playerMovement
       value: 
