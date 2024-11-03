@@ -1,4 +1,5 @@
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 using TMPro;
 
@@ -9,15 +10,20 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private float moveSpeed = 100f;
     [SerializeField] private PlayerMovement playerMovement;
-    //[SerializeField] private DialogueObject testDialogue;
+    
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private float zoomedInSize = 3f;
+    [SerializeField] private float zoomSpeed = 2f;
     
     public bool IsOpen {get; private set;}
     
     private TypeWriterEffect typeWriterEffect;
+    private float originalSize;
 
     private void Start()
     {
         typeWriterEffect = GetComponent<TypeWriterEffect>();
+        originalSize = virtualCamera.m_Lens.OrthographicSize;
     }
 
     public void showDialogue(DialogueObject dialogueObject)
@@ -39,6 +45,7 @@ public class DialogueUI : MonoBehaviour
 
     public IEnumerator MoveUp()
     {
+        StartCoroutine(ZoomIn());
         IsOpen = true;
         playerMovement._enabled = false;
         float canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
@@ -57,6 +64,7 @@ public class DialogueUI : MonoBehaviour
 
     public IEnumerator MoveDown()
     {
+        StartCoroutine(ZoomOut());
         playerMovement._enabled = true;
         Vector2 startPosition = new Vector2(dialogueBox.anchoredPosition.x, dialogueBox.anchoredPosition.y - dialogueBox.rect.height);
 
@@ -69,5 +77,23 @@ public class DialogueUI : MonoBehaviour
         dialogueBox.anchoredPosition = startPosition;
         textLabel.text = string.Empty;
         IsOpen = false;
+    }
+    
+    private IEnumerator ZoomIn()
+    {
+        while (virtualCamera.m_Lens.OrthographicSize > zoomedInSize)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.MoveTowards(virtualCamera.m_Lens.OrthographicSize, zoomedInSize, zoomSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    private IEnumerator ZoomOut()
+    {
+        while (virtualCamera.m_Lens.OrthographicSize < originalSize)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.MoveTowards(virtualCamera.m_Lens.OrthographicSize, originalSize, zoomSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
 }
