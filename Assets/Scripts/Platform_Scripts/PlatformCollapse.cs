@@ -5,12 +5,18 @@ public class PlatformCollapse : MonoBehaviour
     [SerializeField] private float collapseDelay = 2.0f;
     [SerializeField] private float restoreDelay = 5.0f;
     private Collider2D platformCollider;
-    private SpriteRenderer platformRenderer;
-    
+    private Rigidbody2D platformRigidbody;
+    private Vector3 initialPosition;
+
     private void Start()
     {
         platformCollider = GetComponent<Collider2D>();
-        platformRenderer = GetComponent<SpriteRenderer>();
+        platformRigidbody = GetComponent<Rigidbody2D>();
+    
+        platformRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        platformRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+    
+        initialPosition = transform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -23,14 +29,18 @@ public class PlatformCollapse : MonoBehaviour
 
     private void CollapsePlatform()
     {
+        platformRigidbody.gravityScale = 2;
+        platformRigidbody.constraints = RigidbodyConstraints2D.None;
         platformCollider.enabled = false;
-        platformRenderer.enabled = false;
-        Invoke(nameof(RestorePlatform), restoreDelay);
+        Invoke(nameof(TeleportPlatformBack), restoreDelay);
     }
 
-    private void RestorePlatform()
+    private void TeleportPlatformBack()
     {
+        platformRigidbody.velocity = Vector2.zero;
+        transform.position = initialPosition;
+        platformRigidbody.gravityScale = 0;
+        platformRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         platformCollider.enabled = true;
-        platformRenderer.enabled = true;
     }
 }
