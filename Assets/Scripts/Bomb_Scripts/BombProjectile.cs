@@ -72,6 +72,11 @@ public class BombProjectile : MonoBehaviour
             {
                 damageable.Damage(damage);
             }
+            BreakBlock breakBlock = o.GetComponent<BreakBlock>();
+            if (breakBlock != null && o.CompareTag("Ground"))
+            {
+                breakBlock.breakTriggered = true;
+            }
         }
     }
 
