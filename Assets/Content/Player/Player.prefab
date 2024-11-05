@@ -461,6 +461,7 @@ MonoBehaviour:
   jumpBufferTime: 0.2
   groundDetector: {fileID: 1156474996298294012}
   forceMultiplier: 1
+  maxGrappleVelocity: 7
   _grapplePoint: {x: 0, y: 0}
 --- !u!95 &1722920691903133610
 Animator:
