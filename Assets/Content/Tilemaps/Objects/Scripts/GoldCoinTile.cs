@@ -23,7 +23,6 @@ public class GoldCoinTile : Tile
 
             tilemapComponent.SetTile(position, null);
         }
-
         return base.StartUp(position, tilemap, go);
     }
 
