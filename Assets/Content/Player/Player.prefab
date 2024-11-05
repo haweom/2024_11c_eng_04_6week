@@ -199,7 +199,7 @@ MonoBehaviour:
   graplingHook: {fileID: 2623434417723893721, guid: b802ca4529f233a4e9b5d40599f3a474, type: 3}
   shootPoint: {fileID: 4600881231847678726}
   speed: 10
-  jumpForce: 5
+  jumpForce: 3
 --- !u!1 &7513284099396695164
 GameObject:
   m_ObjectHideFlags: 0
