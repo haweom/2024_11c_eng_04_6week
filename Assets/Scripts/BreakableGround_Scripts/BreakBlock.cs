@@ -19,8 +19,7 @@ public class BreakBlock : MonoBehaviour
         _blockRigidbody.bodyType = RigidbodyType2D.Dynamic;
         _blockRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (breakTriggered)
