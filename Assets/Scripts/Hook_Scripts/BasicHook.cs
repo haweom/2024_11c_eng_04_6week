@@ -92,6 +92,9 @@ public class GraplingHook : MonoBehaviour
             float playerDistance = Vector2.Distance(_player.transform.position, transform.position);
             _joint.distance = Mathf.Clamp(playerDistance, 0.5f, maxDistance);
             _isAttached = true;
+        }else if (other.CompareTag("HookDen"))
+        {
+            Destroy(gameObject);
         }
     }
 }
