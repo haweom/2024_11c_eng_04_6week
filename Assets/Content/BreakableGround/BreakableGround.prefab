@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8577877909884261670}
   - component: {fileID: 7304302226584900185}
   - component: {fileID: 8749466048093542509}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BreakableGround
   m_TagString: Ground
   m_Icon: {fileID: 0}
