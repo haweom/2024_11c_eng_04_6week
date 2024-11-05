@@ -72,6 +72,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 1
+  - first: {x: 2, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 12
+      m_TileSpriteIndex: 12
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 12
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -1, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -188,6 +198,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 67d10bfc57c7e764997092c8fa285040, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: aafd05c67a4d59249b02105dfdaa6a7e, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: cd20be43db8aa244aa2b718a0a888f4e, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 2043246800, guid: b5b60304cad07e7449f677deae26fab0, type: 3}
@@ -213,8 +225,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: 5f5f5e2b7cbeb5a48a1c20ba597a9f02, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 4376a245b9a8cb4409ccbe3dc87140c7, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 5fdffc5174008074e948c9ec65e8b224, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 12
+  - m_RefCount: 13
     m_Data:
       e00: 1
       e01: 0
@@ -233,10 +247,8 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 12
+  - m_RefCount: 13
     m_Data: {r: 1, g: 1, b: 1, a: 1}
-  - m_RefCount: 0
-    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray:
   - m_RefCount: 1
     m_Data: {fileID: 8059097847981727383, guid: 0bf8145ded6ffb6439f05da49cdff25e, type: 3}
@@ -262,6 +274,8 @@ Tilemap:
     m_Data: {fileID: 5695153282535471646, guid: 1819d3c11e2eef845b99c99f60470fad, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 4420837119560625341, guid: b3b6a5a64025a144398f644005a998b9, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 1215251668931390287, guid: b1a2b96ba9621f34cb1af09449b56700, type: 3}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -2, y: -2, z: 0}
@@ -379,7 +393,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &8015342221932107332
+--- !u!114 &7398965993788908890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
