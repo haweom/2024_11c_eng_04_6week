@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GroundDetectorScript groundDetector;
     
     [SerializeField] private float forceMultiplier = 50f;
+    [SerializeField] private float maxGrappleVelocity = 10f;
     
     public Vector2 _grapplePoint;
 
@@ -85,6 +86,11 @@ public class PlayerMovement : MonoBehaviour
             }
             
             _rb.AddForce(tangentDirection * forceMultiplier * Mathf.Abs(_xInput), ForceMode2D.Force);
+            
+            if (_rb.velocity.magnitude > maxGrappleVelocity)
+            {
+                _rb.velocity = _rb.velocity.normalized * maxGrappleVelocity;
+            }
         }
     }
 
