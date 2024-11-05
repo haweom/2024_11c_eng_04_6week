@@ -7,9 +7,16 @@ public class ShootHook : MonoBehaviour
     [SerializeField] private GameObject graplingHook;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float speed;
+    [SerializeField] private float jumpForce;
+    private Rigidbody2D _playerRB;
 
     private GameObject _hook;
 
+    private void Start()
+    {
+        _playerRB = GetComponentInParent<Rigidbody2D>();
+    }
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -22,6 +29,7 @@ public class ShootHook : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            _playerRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             Destroy(_hook);
         }
     }

@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 10
-  climbSpeed: 5
+  climbSpeed: 2
   dragAmount: 0.5
 --- !u!231 &117329948150536429
 SpringJoint2D:

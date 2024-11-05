@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float _xInput;
     private PlayerAttack _playerAttack;
     public bool _enabled;
+    public bool _isGrappled;
 
     [SerializeField] private float speed = 7.5f;
 
@@ -27,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     private float _jumpBufferCounter;
     
     [SerializeField] private GroundDetectorScript groundDetector;
+    
+    [SerializeField] private float forceMultiplier = 50f;
+    
+    public Vector2 _grapplePoint;
 
     private void Awake()
     {
@@ -38,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_enabled)
+        if (_enabled && !_isGrappled)
         {
             _xInput = Input.GetAxis("Horizontal");
             _isGrounded = groundDetector.GroundCheck();
@@ -53,6 +58,34 @@ public class PlayerMovement : MonoBehaviour
 
             JumpBuffer();
         }
+
+        if (_isGrappled && _enabled)
+        {
+            _xInput = Input.GetAxis("Horizontal");
+            
+            ApplyGrappleForce();
+            
+            AnimationChecker();
+            AnimationSetter();
+            PlayerDirectionChanger();
+        }
+    }
+    
+    private void ApplyGrappleForce()
+    {
+        if (_xInput != 0f)
+        {
+            Vector2 grappleToPlayer = (Vector2)transform.position - _grapplePoint;
+            grappleToPlayer.Normalize();
+            
+            Vector2 tangentDirection = Vector2.Perpendicular(grappleToPlayer);
+            if (_xInput < 0)
+            {
+                tangentDirection = -tangentDirection;
+            }
+            
+            _rb.AddForce(tangentDirection * forceMultiplier * Mathf.Abs(_xInput), ForceMode2D.Force);
+        }
     }
 
     private void FixedUpdate()
@@ -61,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GroundedMovement();
         }
-        else
+        if (!_isGrappled && !_isGrounded)
         {
             AerialMovement();
         }

@@ -13,6 +13,8 @@ public class GraplingHook : MonoBehaviour
     [SerializeField] private float maxDistance;
     [SerializeField] private float climbSpeed;
     [SerializeField] private float dragAmount;
+    private PlayerMovement playerMovement;
+    
     private Vector2 _startingPosition;
     private SpringJoint2D _joint;
     private bool _isAttached;
@@ -24,6 +26,7 @@ public class GraplingHook : MonoBehaviour
 
     private void Start()
     {
+        playerMovement = FindObjectOfType<PlayerMovement>();
         _isAttached = false;
         _startingPosition = transform.position;
         _joint = gameObject.GetComponent<SpringJoint2D>();
@@ -38,6 +41,7 @@ public class GraplingHook : MonoBehaviour
     {
         if (_playerRb != null)
         {
+            playerMovement._isGrappled = false;
             _playerRb.drag = 0.0f;
         }
     }
@@ -50,14 +54,12 @@ public class GraplingHook : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        // <Hook rotator
+        
         Vector2 direction = _player.transform.position - transform.position;
         
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        // >
         
         _lineRenderer.enabled = true;
         _lineRenderer.SetPosition(0, transform.position);
@@ -67,8 +69,18 @@ public class GraplingHook : MonoBehaviour
         {
             _joint.connectedBody = _playerRb;
             _joint.enabled = true;
-
             _playerRb.drag = dragAmount;
+            
+            if (playerMovement._isGrappled == false)
+            {
+                playerMovement._isGrappled = true;
+            }
+
+            if (playerMovement._isGrappled == true)
+            {
+                playerMovement._isGrounded = false;
+                playerMovement._grapplePoint = this.transform.position;
+            }
             
             float verticalInput = Input.GetAxis("Vertical");
             if (verticalInput != 0)

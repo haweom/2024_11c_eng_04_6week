@@ -199,6 +199,7 @@ MonoBehaviour:
   graplingHook: {fileID: 2623434417723893721, guid: b802ca4529f233a4e9b5d40599f3a474, type: 3}
   shootPoint: {fileID: 4600881231847678726}
   speed: 10
+  jumpForce: 5
 --- !u!1 &7513284099396695164
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,11 +454,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isGrounded: 0
   _enabled: 0
+  _isGrappled: 0
   speed: 5
   jumpForce: 7
   coyoteTime: 0.5
   jumpBufferTime: 0.2
   groundDetector: {fileID: 1156474996298294012}
+  forceMultiplier: 1
+  _grapplePoint: {x: 0, y: 0}
 --- !u!95 &1722920691903133610
 Animator:
   serializedVersion: 5
