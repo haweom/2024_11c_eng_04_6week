@@ -65,7 +65,6 @@ public class DialogueUI : MonoBehaviour
     public IEnumerator MoveDown()
     {
         StartCoroutine(ZoomOut());
-        playerMovement._enabled = true;
         Vector2 startPosition = new Vector2(dialogueBox.anchoredPosition.x, dialogueBox.anchoredPosition.y - dialogueBox.rect.height);
 
         while (dialogueBox.anchoredPosition.y > startPosition.y)
@@ -77,6 +76,7 @@ public class DialogueUI : MonoBehaviour
         dialogueBox.anchoredPosition = startPosition;
         textLabel.text = string.Empty;
         IsOpen = false;
+        playerMovement._enabled = true;
     }
     
     private IEnumerator ZoomIn()
