@@ -18,6 +18,7 @@ public class MrCrabsScript : MonoBehaviour
     //animations
     private bool _idle;
     private bool _walking;
+    private bool _isTalking;
 
     public void Start()
     {
@@ -83,8 +84,31 @@ public class MrCrabsScript : MonoBehaviour
     
     private void AnimationSetter()
     {
-        _animator.SetBool("Walking", _walking);
-        _animator.SetBool("Idle", _idle);
+        if (!_isTalking)
+        {
+            _isWalkingActive = true;
+            
+            _animator.SetBool("Walking", _walking);
+            _animator.SetBool("Idle", _idle);
+        }
+        else
+        {
+            TalkingAnimationSetter();
+        }
+    }
+
+    private void TalkingAnimationSetter()
+    {
+        _isWalkingActive = false;
+        
+        _animator.SetBool("Walking", false);
+        _animator.SetBool("Idle", true);
+    }
+    
+    public bool IsTalking
+    {
+        get => _isTalking;
+        set => _isTalking = value;
     }
     
     private IEnumerator RandomStopRoutine()

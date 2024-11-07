@@ -9,6 +9,13 @@ public class DialogueActivator : MonoBehaviour, Iinteractable
     
     [SerializeField] private DialogueObject dialogueObject;
     
+    private MrCrabsScript _crabScript;
+
+    private void Start()
+    {
+        _crabScript = GetComponentInParent<MrCrabsScript>();
+    }
+
     public void Interact(InteractPlayer player)
     {
         player.DialogueUI.showDialogue(dialogueObject);
@@ -18,6 +25,7 @@ public class DialogueActivator : MonoBehaviour, Iinteractable
     {
         if (other.CompareTag("Player") && other.TryGetComponent(out InteractPlayer interactPlayer))
         {
+            _crabScript.IsTalking = true;
             interactPlayer.Interactable = this;
         }
     }
@@ -28,6 +36,7 @@ public class DialogueActivator : MonoBehaviour, Iinteractable
         {
             if (interactPlayer.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
             {
+                _crabScript.IsTalking = false;
                 interactPlayer.Interactable = null;
             }
         }
