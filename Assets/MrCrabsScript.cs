@@ -34,6 +34,9 @@ public class MrCrabsScript : MonoBehaviour
         {
             _xInput *= -1;
         }
+        
+        AnimationCheck();
+        AnimationSetter();
     }
 
     private void FixedUpdate()
