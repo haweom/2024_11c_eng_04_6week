@@ -62,13 +62,19 @@ public class MrCrabsScript : MonoBehaviour
         {
             transform.localScale = new Vector2(1f, 1f);
             interactButton.transform.localScale = new Vector2(1f, 1f);
-            questionMark.transform.localScale = new Vector2(1f, 1f);
+            if (questionMark != null)
+            {
+                questionMark.transform.localScale = new Vector2(1f, 1f);
+            }
         }
         else if (_xInput > 0f)
         {
             transform.localScale = new Vector2(-1f, 1f);
             interactButton.transform.localScale = new Vector2(-1f, 1f);
-            questionMark.transform.localScale = new Vector2(-1f, 1f);
+            if (questionMark != null)
+            {
+                questionMark.transform.localScale = new Vector2(-1f, 1f);
+            }
         }
 
         if (_xInput == 0)

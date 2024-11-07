@@ -28,7 +28,7 @@ public class ShootHook : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && movement._isGrappled)
+        if (Input.GetKeyDown(KeyCode.Space) && movement._isGrappled && graplingHook != null)
         {
             _playerRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             Destroy(_hook);
