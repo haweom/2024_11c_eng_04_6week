@@ -274,6 +274,7 @@ MonoBehaviour:
   leftDetector: {fileID: 4842120178466666891}
   speed: 1
   interactButton: {fileID: 2329537812577570869}
+  questionMark: {fileID: 8202206483927010991}
 --- !u!1 &6793343520755518662
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +475,7 @@ Transform:
   m_GameObject: {fileID: 8202206483927010991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.229, y: 0.573, z: 0}
+  m_LocalPosition: {x: 0, y: 0.573, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
