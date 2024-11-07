@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
+    [SerializeField] private RespawnPoint firstRespawnPoint;
+    
     private RespawnPoint respawnPoint;
     private GameObject player;
     private PlayerHealth playerHealth;
 
     void Start()
     {
+        respawnPoint = firstRespawnPoint;
+        respawnPoint.setActive();
+        
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerHealth = player.GetComponent<PlayerHealth>();
         }
-        respawnPoint = GetComponent<RespawnPoint>();
     }
 
 

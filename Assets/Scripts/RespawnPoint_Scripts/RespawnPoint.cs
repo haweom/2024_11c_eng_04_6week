@@ -16,6 +16,11 @@ public class RespawnPoint : MonoBehaviour
     {
         _animator.SetBool("isActive", false);
     }
+
+    public void setActive()
+    {
+        _animator.SetBool("isActive", true);
+    }
     
     void OnTriggerEnter2D(Collider2D other)
     {
