@@ -96,7 +96,7 @@ public class MrCrabsScript : MonoBehaviour
     
     private void AnimationSetter()
     {
-        if (!_isTalking)
+        if (!_isTalking && _isWalkingActive)
         {
             _isWalkingActive = true;
             
