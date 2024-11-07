@@ -8,6 +8,7 @@ public class ShootBullet : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private Transform bulletSpawn;
+    [SerializeField] private bool isTurningRight;
      
     private GameObject _bullet;
     private Transform _shootPosition;
@@ -40,7 +41,21 @@ public class ShootBullet : MonoBehaviour
     public void Shoot()
     {
         _bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
-        Vector2 shotDirection = -bulletSpawn.right;
+        
+        Vector2 shotDirection = Vector2.zero;
+        
+        if (!isTurningRight)
+        {
+            shotDirection = -bulletSpawn.right;
+        }
+        else
+        {
+            shotDirection = bulletSpawn.right;
+            Vector3 bulletScale = _bullet.transform.localScale;
+            bulletScale.x *= -1;
+            _bullet.transform.localScale = bulletScale;
+        }
+        
         shotDirection.Normalize();
         
         Rigidbody2D rb = _bullet.GetComponent<Rigidbody2D>();
