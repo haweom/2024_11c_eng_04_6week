@@ -20,6 +20,7 @@ public class DialogueActivator : MonoBehaviour, Iinteractable
 
     public void Interact(InteractPlayer player)
     {
+        StartCoroutine(FadeOut());
         player.DialogueUI.showDialogue(dialogueObject);
     }
 
