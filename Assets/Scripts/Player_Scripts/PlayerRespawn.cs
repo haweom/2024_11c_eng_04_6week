@@ -12,8 +12,7 @@ public class PlayerRespawn : MonoBehaviour
 
     void Start()
     {
-        respawnPoint = firstRespawnPoint;
-        respawnPoint.setActive();
+        StartCoroutine(InitializeRespawnPoint());
         
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -22,6 +21,13 @@ public class PlayerRespawn : MonoBehaviour
         }
     }
 
+    private IEnumerator InitializeRespawnPoint()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        respawnPoint = firstRespawnPoint;
+        respawnPoint.setActive();
+    }
 
     public void SetRespawnPoint(RespawnPoint newRespawnPoint)
     {

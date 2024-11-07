@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8228373115283578013}
   m_Layer: 0
   m_Name: SilverCoin
-  m_TagString: Untagged
+  m_TagString: CoinSilver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
