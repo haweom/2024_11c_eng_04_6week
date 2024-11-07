@@ -9,6 +9,7 @@ public class DialogueActivator : MonoBehaviour, Iinteractable
     
     [SerializeField] private DialogueObject dialogueObject;
     [SerializeField] private SpriteRenderer interactButton;
+    [SerializeField] private GameObject questionMark;
     
     private MrCrabsScript _crabScript;
 
@@ -21,6 +22,7 @@ public class DialogueActivator : MonoBehaviour, Iinteractable
     public void Interact(InteractPlayer player)
     {
         StartCoroutine(FadeOut());
+        Destroy(questionMark);
         player.DialogueUI.showDialogue(dialogueObject);
     }
 
