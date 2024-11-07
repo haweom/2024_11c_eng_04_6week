@@ -7,6 +7,7 @@ public class MrCrabsScript : MonoBehaviour
 {
     [SerializeField] private LeftRightDetector leftDetector;
     [SerializeField] private float speed;
+    [SerializeField] private GameObject interactButton;
 
     private Rigidbody2D _rb;
     private Animator _animator;
@@ -59,10 +60,12 @@ public class MrCrabsScript : MonoBehaviour
         if (_xInput < 0f)
         {
             transform.localScale = new Vector2(1f, 1f);
+            interactButton.transform.localScale = new Vector2(1f, 1f);
         }
         else if (_xInput > 0f)
         {
             transform.localScale = new Vector2(-1f, 1f);
+            interactButton.transform.localScale = new Vector2(-1f, 1f);
         }
 
         if (_xInput == 0)
