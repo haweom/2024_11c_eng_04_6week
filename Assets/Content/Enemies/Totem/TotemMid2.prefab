@@ -237,7 +237,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!114 &3932377964111094614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +253,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8543004682345838604, guid: 8b8bf4817a77d8b4685c2c4868cd525a, type: 3}
   bulletSpeed: 3
   bulletSpawn: {fileID: 619176861208485332}
+  isTurningRight: 0
 --- !u!95 &2591858047173884364
 Animator:
   serializedVersion: 5
