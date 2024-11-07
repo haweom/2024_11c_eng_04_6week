@@ -131,6 +131,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8543004682345838604, guid: 8b8bf4817a77d8b4685c2c4868cd525a, type: 3}
   bulletSpeed: 3
   bulletSpawn: {fileID: 470626473179426246}
+  isTurningRight: 0
 --- !u!95 &5425486891962058644
 Animator:
   serializedVersion: 5
@@ -272,5 +273,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25, y: 25}
+  m_Size: {x: 25, y: 999}
   m_EdgeRadius: 0
