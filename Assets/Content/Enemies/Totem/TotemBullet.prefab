@@ -163,4 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   damage: 10
-  maxRange: 10
+  maxRange: 35
