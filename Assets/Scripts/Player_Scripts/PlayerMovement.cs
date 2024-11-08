@@ -47,59 +47,64 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_enabled && !_isGrappled)
+        if (!PauseMenu.IsPaused)
         {
-            _xInput = Input.GetAxis("Horizontal");
-            if (_groundCounter <= 0)
+            if (_enabled && !_isGrappled)
             {
-                _groundCounter = _groundTime;
-                _isGrounded = groundDetector.GroundCheck();
+                _xInput = Input.GetAxis("Horizontal");
+                if (_groundCounter <= 0)
+                {
+                    _groundCounter = _groundTime;
+                    _isGrounded = groundDetector.GroundCheck();
+                }
+                else
+                {
+                    _groundCounter -= Time.deltaTime;
+                }
+            
+                _playerAttack.SetIsFalling(!_isGrounded);
+
+                PlayerDirectionChanger();
+
+                AnimationChecker();
+                AnimationSetter();
+
+                Coyote();
+
+                JumpBuffer();
             }
-            else
+
+            if (_isGrappled && _enabled)
             {
-                _groundCounter -= Time.deltaTime;
-            }
+                _xInput = Input.GetAxis("Horizontal");
             
-            _playerAttack.SetIsFalling(!_isGrounded);
-
-            PlayerDirectionChanger();
-
-            AnimationChecker();
-            AnimationSetter();
-
-            Coyote();
-
-            JumpBuffer();
-        }
-
-        if (_isGrappled && _enabled)
-        {
-            _xInput = Input.GetAxis("Horizontal");
+                ApplyGrappleForce();
             
-            ApplyGrappleForce();
-            
-            AnimationChecker();
-            AnimationSetter();
-            PlayerDirectionChanger();
+                AnimationChecker();
+                AnimationSetter();
+                PlayerDirectionChanger();
+            } 
         }
     }
 
     private void FixedUpdate()
     {
-        if (_isGrounded)
+        if (!PauseMenu.IsPaused)
         {
-            GroundedMovement();
-        }
-        if (!_isGrappled && !_isGrounded)
-        {
-            AerialMovement();
-        }
+            if (_isGrounded)
+            {
+                GroundedMovement();
+            }
+            if (!_isGrappled && !_isGrounded)
+            {
+                AerialMovement();
+            }
         
-        if (!_enabled)
-        {
-            _rb.velocity = Vector2.zero;
+            if (!_enabled)
+            {
+                _rb.velocity = Vector2.zero;
+            } 
         }
-        
     }
 
     private void AerialMovement()

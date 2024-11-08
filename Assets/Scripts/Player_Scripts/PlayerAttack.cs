@@ -45,35 +45,38 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
+        if (!PauseMenu.IsPaused)
         {
-            GroundAnimation();
-            _attackTimeCounter = 0f;
-            Attack();
-        }
-
-        if (Input.GetMouseButtonUp(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
-        {
-            AirAnimation();
-            _attackTimeCounter = 0f;
-            fallAttack();
-        }
-        
-        if (Input.GetMouseButton(0) && _hasSword)
-        {
-            holdTime += Time.deltaTime;
-            if (holdTime >= requiredButtonHoldTime)
+            if (Input.GetMouseButtonUp(0) && _attackTimeCounter >= attackSpeed && !_isFalling && _hasSword)
             {
-                throwAttack();
+                GroundAnimation();
+                _attackTimeCounter = 0f;
+                Attack();
+            }
+
+            if (Input.GetMouseButtonUp(0) && _isFalling && _attackTimeCounter >= attackSpeed && _hasSword)
+            {
+                AirAnimation();
+                _attackTimeCounter = 0f;
+                fallAttack();
+            }
+            
+            if (Input.GetMouseButton(0) && _hasSword)
+            {
+                holdTime += Time.deltaTime;
+                if (holdTime >= requiredButtonHoldTime)
+                {
+                    throwAttack();
+                    holdTime = 0f;
+                }
+            }
+            else
+            {
                 holdTime = 0f;
             }
-        }
-        else
-        {
-            holdTime = 0f;
-        }
 
-        _attackTimeCounter += Time.deltaTime;
+            _attackTimeCounter += Time.deltaTime;
+        }
     }
 
     private void GroundAnimation()

@@ -20,18 +20,21 @@ public class ShootHook : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!PauseMenu.IsPaused)
         {
-            if (_hook == null)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                ShootGraplingHook();
+                if (_hook == null)
+                {
+                    ShootGraplingHook();
+                }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && movement._isGrappled && graplingHook != null)
-        {
-            _playerRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            Destroy(_hook);
+            if (Input.GetKeyDown(KeyCode.Space) && movement._isGrappled && graplingHook != null)
+            {
+                _playerRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                Destroy(_hook);
+            }
         }
     }
 

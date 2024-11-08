@@ -27,17 +27,21 @@ public class HealthPotion : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!PauseMenu.IsPaused)
         {
-            if (_cooldownTimer <= 0)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                _cooldownTimer = cooldown;
-                Regenerate();
-                
+                if (_cooldownTimer <= 0)
+                {
+                    _cooldownTimer = cooldown;
+                    Regenerate();
+
+                }
             }
-        }else if (_cooldownTimer >= 0)
-        {
-            _cooldownTimer -= Time.deltaTime;
+            else if (_cooldownTimer >= 0)
+            {
+                _cooldownTimer -= Time.deltaTime;
+            }
         }
     }
 

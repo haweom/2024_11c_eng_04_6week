@@ -15,12 +15,15 @@ public class BombThrow : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (!PauseMenu.IsPaused)
         {
-            if (_thrown == null && Time.time >= _nextThrowTime)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                Throw();
-                _nextThrowTime = Time.time + cooldownTime;
+                if (_thrown == null && Time.time >= _nextThrowTime)
+                {
+                    Throw();
+                    _nextThrowTime = Time.time + cooldownTime;
+                }
             }
         }
     }

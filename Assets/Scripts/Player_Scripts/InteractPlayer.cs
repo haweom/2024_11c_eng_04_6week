@@ -13,11 +13,14 @@ public class InteractPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !DialogueUI.IsOpen)
+        if (!PauseMenu.IsPaused)
         {
-            if (Interactable != null)
+            if (Input.GetKeyDown(KeyCode.R) && !DialogueUI.IsOpen)
             {
-                Interactable.Interact(this);
+                if (Interactable != null)
+                {
+                    Interactable.Interact(this);
+                }
             }
         }
     }

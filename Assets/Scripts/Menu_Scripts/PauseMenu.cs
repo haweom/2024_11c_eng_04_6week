@@ -4,19 +4,19 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
 
-    private bool _isPaused;
+    public static bool IsPaused;
     public GameObject pausePanel;
     void Start()
     {
         pausePanel.SetActive(false);
-        _isPaused = false;
+        IsPaused = false;
     }
     
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (_isPaused)
+            if (IsPaused)
             {
                 ResumeGame();
             }
@@ -29,14 +29,14 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        _isPaused = true;
+        IsPaused = true;
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
-        _isPaused = false;
+        IsPaused = false;
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
     }
