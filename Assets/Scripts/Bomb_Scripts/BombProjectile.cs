@@ -70,7 +70,7 @@ public class BombProjectile : MonoBehaviour
             IDamageable damageable = o.GetComponent<IDamageable>();
             if (damageable != null && !o.CompareTag("Player"))
             {
-                damageable.Damage(damage);
+                damageable.Damage(damage, new Vector2());
             }
             BreakBlock breakBlock = o.GetComponent<BreakBlock>();
             if (breakBlock != null && o.CompareTag("Ground"))

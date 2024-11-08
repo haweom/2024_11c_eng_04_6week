@@ -17,7 +17,7 @@ public class DummyHealth : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, Vector2 knockback)
     {
         _currentHealth -= damage;
         if (_currentHealth <= 0)

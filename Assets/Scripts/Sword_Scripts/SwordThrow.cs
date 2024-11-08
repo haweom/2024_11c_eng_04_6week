@@ -65,7 +65,7 @@ public class SwordThrow : MonoBehaviour
             IDamageable damageable = enemy.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.Damage(damageAmount);
+                damageable.Damage(damageAmount, new Vector2());
                 hasBeenHit.Add(enemy);
             }
         }

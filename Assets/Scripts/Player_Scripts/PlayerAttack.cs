@@ -146,15 +146,16 @@ public class PlayerAttack : MonoBehaviour
             IDamageable damageable = _hits[i].collider.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.Damage(damage);
+                //damageable.Damage(damage, );
 
                 Rigidbody2D enemyRb = _hits[i].collider.gameObject.GetComponent<Rigidbody2D>();
                 if (enemyRb != null)
                 {
                     Vector2 knockbackDirection = _hits[i].transform.position - transform.position;
                     knockbackDirection.Normalize();
-
-                    enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+                    
+                    damageable.Damage(damage, knockbackDirection * knockback);
+                    //enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
                 }
             }
         }
@@ -172,7 +173,7 @@ public class PlayerAttack : MonoBehaviour
             IDamageable damageable = _hits[i].collider.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.Damage(damage);
+                //damageable.Damage(damage);
 
                 Rigidbody2D enemyRb = _hits[i].collider.gameObject.GetComponent<Rigidbody2D>();
                 if (enemyRb != null)
@@ -180,7 +181,8 @@ public class PlayerAttack : MonoBehaviour
                     Vector2 knockbackDirection = _hits[i].transform.position - transform.position;
                     knockbackDirection.Normalize();
 
-                    enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+                    damageable.Damage(damage, knockbackDirection * knockback);
+                   // enemyRb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
                 }
             }
         }
