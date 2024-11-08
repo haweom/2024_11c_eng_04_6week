@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     public bool _isGrounded;
 
+    private AudioManagerScript _ams;
     private Animator _animator;
     private bool _running;
     private bool _jumping;
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerAttack = GetComponent<PlayerAttack>();
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
         _enabled = true;
     }
 
@@ -55,7 +57,12 @@ public class PlayerMovement : MonoBehaviour
                 if (_groundCounter <= 0)
                 {
                     _groundCounter = _groundTime;
+                    bool soundCheck = _isGrounded;
                     _isGrounded = groundDetector.GroundCheck();
+                    if (_isGrounded != soundCheck && _isGrounded)
+                    {
+                        _ams.PlaySfx(_ams.land);
+                    }
                 }
                 else
                 {
@@ -63,11 +70,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             
                 _playerAttack.SetIsFalling(!_isGrounded);
-
-                PlayerDirectionChanger();
-
-                AnimationChecker();
-                AnimationSetter();
 
                 Coyote();
 
@@ -79,11 +81,12 @@ public class PlayerMovement : MonoBehaviour
                 _xInput = Input.GetAxis("Horizontal");
             
                 ApplyGrappleForce();
-            
-                AnimationChecker();
-                AnimationSetter();
-                PlayerDirectionChanger();
-            } 
+            }
+
+            PlayerDirectionChanger();
+            SoundPlayer();
+            AnimationChecker();
+            AnimationSetter();
         }
     }
 
@@ -235,6 +238,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_jumping)
             {
+               if(!_animator.GetBool("Jump"))
+                {
+                    _ams.PlaySfx(_ams.jump);
+                }
                 _animator.SetBool("Jump", true);
             }
             else
@@ -266,6 +273,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_jumping)
             {
+                if(!_animator.GetBool("JumpSword"))
+                {
+                    _ams.PlaySfx(_ams.jump);
+                }
                 _animator.SetBool("JumpSword", true);
             }
             else
@@ -292,10 +303,25 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    private void SoundPlayer()
+    {
+        if (_running)
+        {
+            if (!_ams.srcRun.isPlaying)
+            {
+                _ams.srcRun.Play();
+            }
+        }
+        else
+        {
+            _ams.srcRun.Pause();
+        }
+    }
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        
+       
     }
 
     private void OnCollisionExit2D(Collision2D other)

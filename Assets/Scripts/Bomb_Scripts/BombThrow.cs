@@ -13,6 +13,13 @@ public class BombThrow : MonoBehaviour
     private float _strength;
     private float _nextThrowTime;
 
+    private AudioManagerScript _ams;
+    
+    private void Awake()
+    {
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
+    }
+
     void Update()
     {
         if (!PauseMenu.IsPaused)
@@ -22,6 +29,7 @@ public class BombThrow : MonoBehaviour
                 if (_thrown == null && Time.time >= _nextThrowTime)
                 {
                     Throw();
+                    _ams.srcSfx.PlayOneShot(_ams.throwBomb);
                     _nextThrowTime = Time.time + cooldownTime;
                 }
             }

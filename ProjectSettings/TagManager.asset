@@ -12,6 +12,7 @@ TagManager:
   - CoinSilver
   - DiamondCoin
   - MiniCrab
+  - AudioManager
   layers:
   - Default
   - TransparentFX

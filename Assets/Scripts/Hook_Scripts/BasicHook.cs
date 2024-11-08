@@ -19,9 +19,12 @@ public class GraplingHook : MonoBehaviour
     private SpringJoint2D _joint;
     private bool _isAttached;
 
+    private AudioManagerScript _ams;
+    
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
     }
 
     private void Start()
@@ -35,10 +38,14 @@ public class GraplingHook : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _joint.enabled = false;
         _joint.enableCollision = true;
+
+        _ams.srcSfx.clip = _ams.hookShoot;
+        _ams.srcSfx.Play();
     }
 
     public void OnDestroy()
     {
+        _ams.srcSfx.Stop();
         if (_playerRb != null)
         {
             playerMovement._isGrappled = false;
@@ -100,12 +107,15 @@ public class GraplingHook : MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
+            _ams.srcSfx.Stop();
+            _ams.srcSfx.PlayOneShot(_ams.hookHit);
             _rb.velocity = Vector2.zero;
             float playerDistance = Vector2.Distance(_player.transform.position, transform.position);
             _joint.distance = Mathf.Clamp(playerDistance, 0.5f, maxDistance);
             _isAttached = true;
         }else if (other.CompareTag("HookDen"))
         {
+            _ams.srcSfx.PlayOneShot(_ams.hookHit);
             Destroy(gameObject);
         }
     }

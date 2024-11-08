@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class HealthPotion : MonoBehaviour
 {
-
+    private AudioManagerScript _ams;
+    
     [SerializeField] private float regenValue = 20f;
     
     [SerializeField] private float cooldown = 5f;
     private float _cooldownTimer = 0f;
     private PlayerHealth _playerHealth;
     
-    void Start()
+    void Awake()
     {
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
         _playerHealth = GetComponent<PlayerHealth>();
     }
     
@@ -34,6 +36,7 @@ public class HealthPotion : MonoBehaviour
                 if (_cooldownTimer <= 0)
                 {
                     _cooldownTimer = cooldown;
+                    _ams.PlaySfx(_ams.potion);
                     Regenerate();
 
                 }

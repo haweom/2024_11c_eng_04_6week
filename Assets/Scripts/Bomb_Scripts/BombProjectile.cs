@@ -15,11 +15,12 @@ public class BombProjectile : MonoBehaviour
     public float direction;
     public float throwStrength;
 
-
+    private AudioManagerScript _ams;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
     }
 
     private void Start()
@@ -38,6 +39,7 @@ public class BombProjectile : MonoBehaviour
         if (timeAlive <= 0)
         {
             Explode();
+            _ams.srcSfx.PlayOneShot(_ams.explodeBomb);
             Destroy(gameObject);
         }
         

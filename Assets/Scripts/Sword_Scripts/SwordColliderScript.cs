@@ -8,17 +8,19 @@ public class SwordColliderScript : MonoBehaviour
     
     private BoxCollider2D _boxCollider;
     private Rigidbody2D _rigidbody;
-
-    void Start()
+    private AudioManagerScript _ams;
+    void Awake()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ground") && _boxCollider.IsTouching(other) )
         {
+            _ams.srcSfx.PlayOneShot(_ams.swordThrowHit);
             _rigidbody.gravityScale = 0;
             _rigidbody.velocity = Vector2.zero;
             swordThrow.SetIsFlying(false);

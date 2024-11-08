@@ -29,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
 
     private RaycastHit2D[] _hits;
     private Animator _animator;
+    private AudioManagerScript _ams;
 
     private float _attackTimeCounter;
     private bool _isAttacking;
@@ -36,9 +37,14 @@ public class PlayerAttack : MonoBehaviour
     private bool _hasSword;
     private int _fallAttackCounter;
 
+    private void Awake()
+    {
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
+        _animator = GetComponent<Animator>();
+    }
+    
     private void Start()
     {
-        _animator = GetComponent<Animator>();
         _attackTimeCounter = attackSpeed;
         _fallAttackCounter = 1;
     }
@@ -87,18 +93,21 @@ public class PlayerAttack : MonoBehaviour
         if (randomNumber == 1)
         {
             _animator.SetBool("Attack-1", true);
+            _ams.PlaySfx(_ams.swordAttack1);
             effect = Instantiate(attackStroke1, attackTransform.position, attackTransform.rotation);
         }
 
         if (randomNumber == 2)
         {
             _animator.SetBool("Attack-2", true);
+            _ams.PlaySfx(_ams.swordAttack2);
             effect = Instantiate(attackStroke2, attackTransform.position, attackTransform.rotation);
         }
 
         if (randomNumber == 3)
         {
             _animator.SetBool("Attack-3", true);
+            _ams.PlaySfx(_ams.swordAttack3);
             effect = Instantiate(attackStroke3, attackTransform.position, attackTransform.rotation);
         }
 
@@ -117,12 +126,14 @@ public class PlayerAttack : MonoBehaviour
         if (_fallAttackCounter == 1)
         {
             _animator.SetBool("FallAttack-1", true);
+            _ams.PlaySfx(_ams.swordAttack1);
             effect = Instantiate(airStroke1, attackDownTransform.position, attackDownTransform.rotation);
         }
 
         if (_fallAttackCounter == 2)
         {
             _animator.SetBool("FallAttack-2", true);
+            _ams.PlaySfx(_ams.swordAttack2);
             effect = Instantiate(airStroke2, attackDownTransform.position, attackDownTransform.rotation);
             _fallAttackCounter = 0;
         }
@@ -194,6 +205,7 @@ public class PlayerAttack : MonoBehaviour
     private void throwAttack()
     {
         _animator.SetBool("hasSword", false);
+        _ams.srcSfx.PlayOneShot(_ams.swordThrow);
         
         Vector2 direction = GetMouseDirection();
         
@@ -215,6 +227,7 @@ public class PlayerAttack : MonoBehaviour
     {
         _hasSword = hasSword;
         _animator.SetBool("hasSword", true);
+        _ams.srcSfx.PlayOneShot(_ams.swordPickUp);
     }
 
     public bool GetHasSword()
