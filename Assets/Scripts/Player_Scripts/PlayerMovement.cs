@@ -71,28 +71,6 @@ public class PlayerMovement : MonoBehaviour
             PlayerDirectionChanger();
         }
     }
-    
-    private void ApplyGrappleForce()
-    {
-        if (_xInput != 0f)
-        {
-            Vector2 grappleToPlayer = (Vector2)transform.position - _grapplePoint;
-            grappleToPlayer.Normalize();
-            
-            Vector2 tangentDirection = Vector2.Perpendicular(grappleToPlayer);
-            if (_xInput < 0)
-            {
-                tangentDirection = -tangentDirection;
-            }
-            
-            _rb.AddForce(tangentDirection * forceMultiplier * Mathf.Abs(_xInput), ForceMode2D.Force);
-            
-            if (_rb.velocity.magnitude > maxGrappleVelocity)
-            {
-                _rb.velocity = _rb.velocity.normalized * maxGrappleVelocity;
-            }
-        }
-    }
 
     private void FixedUpdate()
     {
@@ -179,6 +157,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void ApplyGrappleForce()
+    {
+        if (_xInput != 0f)
+        {
+            Vector2 grappleToPlayer = (Vector2)transform.position - _grapplePoint;
+            grappleToPlayer.Normalize();
+            
+            Vector2 tangentDirection = Vector2.Perpendicular(grappleToPlayer);
+            if (_xInput < 0)
+            {
+                tangentDirection = -tangentDirection;
+            }
+            
+            _rb.AddForce(tangentDirection * forceMultiplier * Mathf.Abs(_xInput), ForceMode2D.Force);
+            
+            if (_rb.velocity.magnitude > maxGrappleVelocity)
+            {
+                _rb.velocity = _rb.velocity.normalized * maxGrappleVelocity;
+            }
+        }
+    }
+    
     private void AnimationChecker()
     {
         if (!_isGrounded)
