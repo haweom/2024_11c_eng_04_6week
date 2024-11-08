@@ -31,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private float forceMultiplier = 50f;
     [SerializeField] private float maxGrappleVelocity = 10f;
+
+    private float _groundTime = 0.2f;
+    private float _groundCounter = 0f;
     
     public Vector2 _grapplePoint;
 
@@ -47,7 +50,16 @@ public class PlayerMovement : MonoBehaviour
         if (_enabled && !_isGrappled)
         {
             _xInput = Input.GetAxis("Horizontal");
-            _isGrounded = groundDetector.GroundCheck();
+            if (_groundCounter <= 0)
+            {
+                _groundCounter = _groundTime;
+                _isGrounded = groundDetector.GroundCheck();
+            }
+            else
+            {
+                _groundCounter -= Time.deltaTime;
+            }
+            
             _playerAttack.SetIsFalling(!_isGrounded);
 
             PlayerDirectionChanger();
@@ -184,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
         if (!_isGrounded)
         {
             _running = false;
-            if (_rb.velocity.y < 0)
+            if (_rb.velocity.y < 0 && !_isGrounded)
             {
                 _falling = true;
                 _jumping = false;
