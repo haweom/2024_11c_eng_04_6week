@@ -6,6 +6,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
     private Rigidbody2D _rb;
     private Animator _animator;
     [SerializeField] private LeftRightDetector leftDetector;
+    private CapsuleCollider2D _collider;
     
     private float _xInput;
     [SerializeField] private float speed = 5f;
@@ -47,6 +48,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        _collider = GetComponent<CapsuleCollider2D>();
     }
     
     private void Start()
@@ -157,7 +159,14 @@ public class EnemyClass : MonoBehaviour, IDamageable
         _animator.SetTrigger("Hit");
         _rb.AddForce(knockback * 4, ForceMode2D.Impulse);
         _knockbackCounter = knockbackTime;
+        _collider.excludeLayers = LayerMask.GetMask("Attackable");
         hit = true;
+        Invoke(nameof(ResetExcludeLayers), knockbackTime);
+    }
+    
+    private void ResetExcludeLayers()
+    {
+        _collider.excludeLayers = 0;
     }
 
     public void Die()

@@ -398,13 +398,14 @@ MonoBehaviour:
   attacking: 0
   maxHealth: 50
   currentHealth: 0
-  damage: 0
+  damage: 10
   attackRange: 0.5
   visionDetectorScript: {fileID: 7280213393627743039}
   chaseTime: 2.5
   attackCd: 2
   epicPatrickMode: 1
   patrickStun: 3
+  knockbackTime: 0.75
 --- !u!95 &3485002286841519176
 Animator:
   serializedVersion: 5
