@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         StartCoroutine(DieAndRespawnCoroutine());
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, Vector2 knockback)
     {
         _currentHealth -= damage;
         healthBar.SetHealth(_currentHealth);

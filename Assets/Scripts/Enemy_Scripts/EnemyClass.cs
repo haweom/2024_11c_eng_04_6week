@@ -33,6 +33,10 @@ public class EnemyClass : MonoBehaviour, IDamageable
     [SerializeField] private bool epicPatrickMode = false;
     [SerializeField] private float patrickStun = 5f;
     private float _patrickTimer = 0f;
+
+    [SerializeField] private float knockbackTime = 0.75f;
+    private float _knockbackCounter = 0f;
+    
     
     private bool _alive;
     private bool _patrol;
@@ -51,6 +55,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
         _alive = true;
         _attackCounter = 0;
+        _knockbackCounter = 0f;
     }
     
     private void Update()
@@ -84,6 +89,11 @@ public class EnemyClass : MonoBehaviour, IDamageable
                     _attackCounter = attackCd;
                 }
             }
+
+            if (_knockbackCounter > 0)
+            {
+                _knockbackCounter -= Time.deltaTime;
+            }
         }
         
         if (_alive && !attacking)
@@ -114,7 +124,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
         if (_alive)
         {
             
-            if (attacking) //tmp loop for attacking tests
+            if (attacking)
             {
                 attacking = false;
                 Attack();
@@ -141,10 +151,12 @@ public class EnemyClass : MonoBehaviour, IDamageable
         }
     }
     //Combat:
-    public void Damage(float damage)
+    public void Damage(float damage, Vector2 knockback)
     {
         currentHealth -= damage;
         _animator.SetTrigger("Hit");
+        _rb.AddForce(knockback * 4, ForceMode2D.Impulse);
+        _knockbackCounter = knockbackTime;
         hit = true;
     }
 
@@ -175,7 +187,7 @@ public class EnemyClass : MonoBehaviour, IDamageable
             IDamageable damageable = o.GetComponent<IDamageable>();
             if (damageable != null && o.CompareTag("Player"))
             {
-                damageable.Damage(damage);
+                damageable.Damage(damage, new Vector2());
             }
         }
     }
@@ -188,8 +200,11 @@ public class EnemyClass : MonoBehaviour, IDamageable
     //Movement:
     private void Movement()
     {
-        DirectionChanger();
-        _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
+        if (_knockbackCounter <= 0)
+        {
+            DirectionChanger();
+            _rb.velocity = new Vector2(_xInput * speed, _rb.velocity.y);
+        }
     }
 
     private void Chase()
@@ -218,7 +233,10 @@ public class EnemyClass : MonoBehaviour, IDamageable
 
     private void Jump()
     {
-        _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+        if (_knockbackCounter <= 0)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+        }
     }
     private void DirectionChanger()
     {

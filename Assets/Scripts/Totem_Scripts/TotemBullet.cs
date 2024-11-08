@@ -34,7 +34,7 @@ public class TotemBullet : MonoBehaviour
         IDamageable damageable = other.GetComponent<IDamageable>();
         if (damageable != null && other.CompareTag("Player"))
         {
-            damageable.Damage(damage);
+            damageable.Damage(damage, new Vector2());
             Destroy(this.gameObject);
         }
 
