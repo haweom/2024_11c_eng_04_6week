@@ -152,13 +152,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void JumpBuffer()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (!PauseMenu.IsPaused)
         {
-            _jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            _jumpBufferCounter -= Time.deltaTime;
+            if (Input.GetButtonDown("Jump"))
+            {
+                _jumpBufferCounter = jumpBufferTime;
+            }
+            else
+            {
+                _jumpBufferCounter -= Time.deltaTime;
+            }
         }
     }
 
