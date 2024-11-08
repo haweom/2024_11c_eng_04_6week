@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/JumpingTest.unity
     guid: 622bad761efb8184ea97865aea65c10f
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 9811d3f4d75c96e48aafba6d2031419b
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: af251bac5819c9d42ac61559a2b76210
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: b688317288708034e806c52dd738320d
   m_configObjects: {}
