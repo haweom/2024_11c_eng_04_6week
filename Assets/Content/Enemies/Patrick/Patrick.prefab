@@ -399,7 +399,7 @@ MonoBehaviour:
   maxHealth: 50
   currentHealth: 0
   damage: 10
-  attackRange: 0.5
+  attackRange: 0.25
   visionDetectorScript: {fileID: 7280213393627743039}
   chaseTime: 2.5
   attackCd: 2
