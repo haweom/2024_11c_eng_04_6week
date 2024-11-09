@@ -11,7 +11,6 @@ public class Level1MusicManager : MonoBehaviour
     {
         _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
         _ams.srcMusic.loop = true;
-        _ams.srcMusic.volume = 0.4f;
     }
 
     private void Start()
