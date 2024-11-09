@@ -26,6 +26,9 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip swordThrowHit;
     public AudioClip swordPickUp;
     public AudioClip coinPickUp;
+
+    [Header("--- Soundtrack ---")] 
+    public AudioClip mainMenuTheme;
     public void Start()
     {
     }
