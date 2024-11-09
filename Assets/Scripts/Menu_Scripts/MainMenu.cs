@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        _optionsMenu.runManager.GetComponent<AudioSource>().Stop();
+        _optionsMenu.GetRunSrc().Stop();
         _ams.srcMusic.clip = _ams.mainMenuTheme;
         _ams.srcMusic.Play();
     }
