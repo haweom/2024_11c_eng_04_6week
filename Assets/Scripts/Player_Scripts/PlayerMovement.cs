@@ -84,10 +84,10 @@ public class PlayerMovement : MonoBehaviour
             }
 
             PlayerDirectionChanger();
-            SoundPlayer();
             AnimationChecker();
             AnimationSetter();
         }
+        SoundPlayer();
     }
 
     private void FixedUpdate()
@@ -311,6 +311,17 @@ public class PlayerMovement : MonoBehaviour
             if (!_ams.srcRun.isPlaying)
             {
                 _ams.srcRun.Play();
+            }
+            if (PauseMenu.IsPaused)
+            {
+                _ams.srcRun.Pause();
+            }
+            else
+            {
+                if (!_ams.srcRun.isPlaying)
+                {
+                    _ams.srcRun.Play();
+                }
             }
         }
         else

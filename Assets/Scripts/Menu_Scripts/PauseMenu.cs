@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,13 +7,21 @@ public class PauseMenu : MonoBehaviour
 
     public static bool IsPaused;
     public GameObject pausePanel;
-    void Start()
+    public GameObject optionsMenu;
+    private OptionsMenu _optionsMenu;
+
+    private void Awake()
+    {
+        _optionsMenu = optionsMenu.GetComponent<OptionsMenu>();
+    }
+
+    private void Start()
     {
         pausePanel.SetActive(false);
         IsPaused = false;
     }
     
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -38,6 +47,7 @@ public class PauseMenu : MonoBehaviour
     {
         IsPaused = false;
         pausePanel.SetActive(false);
+        _optionsMenu.Hide();
         Time.timeScale = 1f;
     }
 
@@ -45,5 +55,10 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
+    }
+
+    public void Options()
+    {
+        _optionsMenu.Show();
     }
 }
