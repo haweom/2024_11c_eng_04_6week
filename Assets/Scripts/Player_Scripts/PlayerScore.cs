@@ -18,4 +18,9 @@ public class PlayerScore : MonoBehaviour
         _currentScore += score;
         _scoreScript.UpdateScore(_currentScore);
     }
+
+    public float GetScore()
+    {
+        return _currentScore;
+    }
 }

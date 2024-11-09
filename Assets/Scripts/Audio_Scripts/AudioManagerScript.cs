@@ -32,12 +32,8 @@ public class AudioManagerScript : MonoBehaviour
 
     [Header("--- Soundtrack ---")] 
     public AudioClip mainMenuTheme;
-    public AudioClip Leve1Theme;
-
-    private void Start()
-    {
-        srcMusic.volume = 0.2f;
-    }
+    public AudioClip leve1Theme;
+    public AudioClip level2Theme;
     
     //made for playing sounds with dynamic volumes
     // for example totem's shooting volume is based on distance
