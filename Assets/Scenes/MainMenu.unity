@@ -213,6 +213,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 643508733468925027, guid: f3d848d079a471d44b750e73c074a1a1, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 643508733468925027, guid: f3d848d079a471d44b750e73c074a1a1, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1042221446578434141, guid: f3d848d079a471d44b750e73c074a1a1, type: 3}
       propertyPath: m_Name
       value: Grid
@@ -256,6 +264,14 @@ PrefabInstance:
     - target: {fileID: 1570516055759089745, guid: f3d848d079a471d44b750e73c074a1a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459812719399172799, guid: f3d848d079a471d44b750e73c074a1a1, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459812719399172799, guid: f3d848d079a471d44b750e73c074a1a1, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

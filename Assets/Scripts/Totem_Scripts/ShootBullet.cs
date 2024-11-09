@@ -9,7 +9,8 @@ public class ShootBullet : MonoBehaviour
     [SerializeField] private float bulletSpeed;
     [SerializeField] private Transform bulletSpawn;
     [SerializeField] private bool isTurningRight;
-     
+    [SerializeField] private float maxDistance = 20f;
+
     private GameObject _bullet;
     private Transform _shootPosition;
     private Transform _playerTransform;
@@ -17,6 +18,12 @@ public class ShootBullet : MonoBehaviour
     private bool _isPlayerNear;
     
     private Animator _animator;
+    private AudioManagerScript _ams;
+
+    private void Awake()
+    {
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
+    }
 
     private void Start()
     {
@@ -41,6 +48,13 @@ public class ShootBullet : MonoBehaviour
     public void Shoot()
     {
         _bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+
+        if (this.CompareTag("TotemHead"))
+        {
+            float distance = Vector2.Distance(_playerTransform.position, transform.position);
+            float volume = Mathf.Clamp01(1 - (distance / maxDistance));
+            _ams.PlayDynamicSfx(_ams.totem1Shoot, volume);
+        }
         
         Vector2 shotDirection = Vector2.zero;
         

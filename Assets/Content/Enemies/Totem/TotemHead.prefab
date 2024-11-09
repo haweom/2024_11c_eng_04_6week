@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6841814020113964928}
   m_Layer: 8
   m_Name: TotemHead
-  m_TagString: Untagged
+  m_TagString: TotemHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   bulletSpeed: 3
   bulletSpawn: {fileID: 470626473179426246}
   isTurningRight: 0
+  maxDistance: 10
 --- !u!95 &5425486891962058644
 Animator:
   serializedVersion: 5

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    
     public GameObject optionsMenu;
     private OptionsMenu _optionsMenu;
     private AudioManagerScript _ams;
@@ -13,19 +12,20 @@ public class MainMenu : MonoBehaviour
     {
         _optionsMenu = optionsMenu.GetComponent<OptionsMenu>();
         _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
+        _ams.srcMusic.loop = true;
     }
 
     private void Start()
     {
         _optionsMenu.runManager.GetComponent<AudioSource>().Stop();
-        _ams.srcSfx.clip = _ams.mainMenuTheme;
-        _ams.srcSfx.Play();
+        _ams.srcMusic.clip = _ams.mainMenuTheme;
+        _ams.srcMusic.Play();
     }
 
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
-        _ams.srcSfx.Pause();
+        _ams.srcMusic.Pause();
     }
 
     public void QuitGame()

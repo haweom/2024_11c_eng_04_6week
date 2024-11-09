@@ -13,6 +13,7 @@ TagManager:
   - DiamondCoin
   - MiniCrab
   - AudioManager
+  - TotemHead
   layers:
   - Default
   - TransparentFX

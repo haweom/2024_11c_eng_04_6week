@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class AudioManagerScript : MonoBehaviour
@@ -10,6 +11,7 @@ public class AudioManagerScript : MonoBehaviour
     public  AudioSource srcMusic;
     public  AudioSource srcSfx;
     public AudioSource srcRun;
+    public AudioSource dynamicSfx;
 
     [Header("--- Audio Clip ---")] 
     public AudioClip jump;
@@ -26,21 +28,22 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip swordThrowHit;
     public AudioClip swordPickUp;
     public AudioClip coinPickUp;
+    public AudioClip totem1Shoot;
 
     [Header("--- Soundtrack ---")] 
     public AudioClip mainMenuTheme;
-    public void Start()
+    public AudioClip Leve1Theme;
+    
+    //made for playing sounds with dynamic volumes
+    // for example totem's shooting volume is based on distance
+    public void PlayDynamicSfx(AudioClip clip, float volume = 1f)
     {
+        dynamicSfx.PlayOneShot(clip,volume);
     }
-
-    public void Update()
-    {
-        
-    }
-
+    
+    //normal sound effect
     public void PlaySfx(AudioClip clip)
     {
         srcSfx.PlayOneShot(clip);
     }
-    
 }
