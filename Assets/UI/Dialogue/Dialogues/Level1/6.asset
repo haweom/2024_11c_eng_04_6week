@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6766d95e6a7d7db449f4db00212aec69, type: 3}
+  m_Name: 6
+  m_EditorClassIdentifier: 
+  dialogue:
+  - "Crab:\nWell, well\u2026 look who actually made it to the end without ending
+    up crab food."
+  - "Crab:\nI\u2019ll admit, Captain Stubborn, I\u2019m\u2026 mildly impressed."
+  - '*The pirate smirks, brushing off dust from his coat.*'
+  - "Crab:\nDon\u2019t get cocky. This was just the warm-up. If you think the rest
+    of the island\u2019s going to be this forgiving, you\u2019re in for a rude awakening."
+  - 'Crab:
+
+    The real nightmares are still waiting for you.'
+  - '*The crab gestures to a dark, foreboding path ahead.*'
+  - 'Crab:
+
+    But, rules are rules. If you don''t have 80% of the coins I cannot
+    let you through.'
+  - 'Crab:
+
+    In that case go back and find some more.'
+  - 'Crab:
+
+    See you on the other side, pirate.'

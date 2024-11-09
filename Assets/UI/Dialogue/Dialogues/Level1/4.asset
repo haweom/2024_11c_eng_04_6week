@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6766d95e6a7d7db449f4db00212aec69, type: 3}
+  m_Name: 4
+  m_EditorClassIdentifier: 
+  dialogue:
+  - "Crab:\nListen up, Captain Dense, we\u2019re stepping things up a notch. See
+    that cracked wall over there?"
+  - '*The captain nods with approval*'
+  - "Crab:\nThat\u2019s not just for show. Use a bomb to blow it open.\n"
+  - '*The pirate fumbles with a bomb, looking a bit unsure.*'
+  - "Crab:\nGood grief. It\u2019s not rocket science. Place it, step back, and boom.
+    Think you can manage that without taking your own head off?"
+  - '*The pirate nods once again, now determined.*'
+  - "Crab:\nGreat. Now, about those platforms ahead. They\u2019re rigged to fall
+    as soon as you step on them."
+  - "Crab:\nAnd guess what\u2019s below? A lovely bed of spikes, just waiting for
+    a careless pirate like you."
+  - "Crab:\nSo unless you fancy getting skewered, move fast and don\u2019t linger."
+  - '*The crab chuckles, clearly amused.*'
+  - 'Crab:
+
+    Just try not to be the first pirate in history to be outsmarted by
+    a platform.'
+  - '*The crab burst into laughter, clearly impressed with his own sense of humor*'

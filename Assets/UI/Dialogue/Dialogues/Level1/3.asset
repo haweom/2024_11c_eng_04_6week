@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6766d95e6a7d7db449f4db00212aec69, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  dialogue:
+  - 'Crab:
+
+    Ah, look at that! Totems with a trigger-happy streak.
+
+'
+  - "Crab:\nThey\u2019ll shoot at anything that moves\u2026 which includes you, genius."
+  - "Crab:\nThey\u2019ll shoot at anything that moves\u2026 which includes you, genius."
+  - "Crab:\nHere\u2019s the deal: you\u2019re going to run past them without getting
+    hit, and while you\u2019re at it, avoid those spikes. They\u2019re not just for
+    decoration."
+  - '*The pirate stares at the maze of obstacles, looking unsure.*'
+  - "Crab: \nOh, and one more thing\u2014see those coins scattered around? You\u2019re
+    going to need to grab at least 80% of them. No shortcuts here."
+  - "Crab: \nYou want me to let you through to the next area? Then prove you\u2019re
+    not completely useless and collect those coins."
+  - "Crab: \nOr do you think you can bribe me with your looks alone?"
+  - '*The crab pauses, giving him a once-over*'
+  - "Crab:\nEww didn\u2019t think so. Now, get moving! Dodge, jump, grab, repeat.
+    Or do I have to spell it out slower for you?"

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6766d95e6a7d7db449f4db00212aec69, type: 3}
+  m_Name: 5
+  m_EditorClassIdentifier: 
+  dialogue:
+  - "Crab: \nWell, color me surprised\u2014you\u2019ve actually made it this far.
+    Didn\u2019t think you had it in you, Captain Determined."
+  - "Crab: \nBut don\u2019t start celebrating just yet. Things are about to get\u2026
+    interesting."
+  - '*The pirate raises an eyebrow, unsure if he should feel proud or worried.*'
+  - "Crab:\nMeet the locals. Some call them \u2018Patricks.\u2019 Big, overgrown
+    sea stars with a nasty habit.\n"
+  - "Crab:\nThey don\u2019t just sit around looking pretty\u2014they\u2019ve got
+    one thing on their minds"
+  - 'Crab:
+
+    To kill and devour.'
+  - 'Crab:
+
+    And you, my friend, are right on the menu.'
+  - '*The crab leans in, almost whispering.*'
+  - "Crab:\nWord of advice? Don\u2019t let them get close. They\u2019re faster than
+    they look and twice as hungry.\n"
+  - '*The pirate looks around, tense but determined.*'
+  - "Crab:\nNow, go on, show me some of that \u2018legendary pirate courage.\u2019
+    Who knows? I might actually start thinking you\u2019re worth finding the bottle."
