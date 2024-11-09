@@ -55,6 +55,15 @@ public class GraplingHook : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.IsPaused)
+        {
+            _ams.srcSfx.Pause();
+        }
+        else
+        {
+            _ams.srcSfx.UnPause();
+        }
+        
         float distanceTraveled = Vector2.Distance(_playerRb.transform.position, transform.position);
 
         if (distanceTraveled >= maxDistance)

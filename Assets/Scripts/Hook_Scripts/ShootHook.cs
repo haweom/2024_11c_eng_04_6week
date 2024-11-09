@@ -12,11 +12,9 @@ public class ShootHook : MonoBehaviour
     private Rigidbody2D _playerRB;
 
     private GameObject _hook;
-    private AudioManagerScript _ams;
     private void Awake()
     {
         _playerRB = GetComponentInParent<Rigidbody2D>();
-        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
     }
     
     private void Update()

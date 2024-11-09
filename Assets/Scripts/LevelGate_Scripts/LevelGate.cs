@@ -36,7 +36,7 @@ public class LevelGate : MonoBehaviour
 
     private void NextLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+        if (SceneManager.GetActiveScene().buildIndex <= SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
