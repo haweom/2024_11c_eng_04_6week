@@ -2075,9 +2075,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 1391894324398641505}
-  sfxManager: {fileID: 0}
-  runManager: {fileID: 0}
-  musicManager: {fileID: 0}
+  musicSlider: {fileID: 809051883284729190}
+  sfxSlider: {fileID: 910814103143671614}
 --- !u!1 &4685076101198958974
 GameObject:
   m_ObjectHideFlags: 0

@@ -190,21 +190,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e44168d12aee5a34fa6acd370ad1ecc9, type: 3}
---- !u!1 &218949692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2490735876332974936, guid: e44168d12aee5a34fa6acd370ad1ecc9, type: 3}
-  m_PrefabInstance: {fileID: 218949691}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &218949693 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2089379789718494732, guid: e44168d12aee5a34fa6acd370ad1ecc9, type: 3}
-  m_PrefabInstance: {fileID: 218949691}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &218949694 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6604346515021619170, guid: e44168d12aee5a34fa6acd370ad1ecc9, type: 3}
-  m_PrefabInstance: {fileID: 218949691}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &385270566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,18 +363,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionsMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 4085245392994172238, guid: 05cbfe17a1159cf46b89df5f551b173d, type: 3}
-      propertyPath: runManager
-      value: 
-      objectReference: {fileID: 218949692}
-    - target: {fileID: 4085245392994172238, guid: 05cbfe17a1159cf46b89df5f551b173d, type: 3}
-      propertyPath: sfxManager
-      value: 
-      objectReference: {fileID: 218949693}
-    - target: {fileID: 4085245392994172238, guid: 05cbfe17a1159cf46b89df5f551b173d, type: 3}
-      propertyPath: musicManager
-      value: 
-      objectReference: {fileID: 218949694}
     - target: {fileID: 5718944673400384196, guid: 05cbfe17a1159cf46b89df5f551b173d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class AudioManagerScript : MonoBehaviour
 {
+    public static AudioManagerScript Instance { get; private set; }
+    
     
     [Header("--- Audio Source ---")]
     public  AudioSource srcMusic;
@@ -34,7 +36,21 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip mainMenuTheme;
     public AudioClip leve1Theme;
     public AudioClip level2Theme;
-    
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     //made for playing sounds with dynamic volumes
     // for example totem's shooting volume is based on distance
     public void PlayDynamicSfx(AudioClip clip, float volume = 1f)
