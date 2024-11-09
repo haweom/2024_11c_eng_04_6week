@@ -319,6 +319,7 @@ MonoBehaviour:
   swordThrow: {fileID: 8300000, guid: f39c6942d0a49be4aa8e0e73b2138ee2, type: 3}
   swordThrowHit: {fileID: 8300000, guid: d67ab839d2e9610469b9c167d186ce11, type: 3}
   swordPickUp: {fileID: 8300000, guid: 3470773e353317249a86c88e3020b124, type: 3}
+  coinPickUp: {fileID: 8300000, guid: a718d39b5b7280d49bce05fe4672ef74, type: 3}
 --- !u!1 &6604346515021619170
 GameObject:
   m_ObjectHideFlags: 0

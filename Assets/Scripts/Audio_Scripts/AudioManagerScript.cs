@@ -25,6 +25,7 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip swordThrow;
     public AudioClip swordThrowHit;
     public AudioClip swordPickUp;
+    public AudioClip coinPickUp;
     public void Start()
     {
     }
