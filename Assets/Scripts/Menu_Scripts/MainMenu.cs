@@ -37,4 +37,13 @@ public class MainMenu : MonoBehaviour
     {
         _optionsMenu.Show();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H) && Input.GetKeyDown(KeyCode.M))
+        {
+            SceneManager.LoadScene(2);
+            _ams.srcMusic.Pause();
+        }
+    }
 }

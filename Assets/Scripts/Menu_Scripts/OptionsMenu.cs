@@ -41,6 +41,7 @@ public class OptionsMenu : MonoBehaviour
 
     private void Update()
     {
+      
     }
 
     public void Show()
