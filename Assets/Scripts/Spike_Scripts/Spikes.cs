@@ -11,7 +11,7 @@ public class Spikes : MonoBehaviour
 
         if (damageable != null)
         {
-            damageable.Die();
+            damageable.Damage(1000f, new Vector2());
         }
     }
 }

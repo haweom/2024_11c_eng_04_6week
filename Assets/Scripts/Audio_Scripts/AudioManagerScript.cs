@@ -31,6 +31,10 @@ public class AudioManagerScript : MonoBehaviour
     public AudioClip swordPickUp;
     public AudioClip coinPickUp;
     public AudioClip totem1Shoot;
+    public AudioClip dmgSound1;
+    public AudioClip dmgSound2;
+    public AudioClip dmgSound3;
+    public AudioClip dmgSound4;
 
     [Header("--- Soundtrack ---")] 
     public AudioClip mainMenuTheme;

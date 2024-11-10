@@ -13,13 +13,20 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public HealthBarScript healthBar;
     private PlayerRespawn _playerRespawn;
     private Animator _animator;
+    
+    private AudioManagerScript _ams;
+    
+    private void Awake()
+    {
+        _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
+        healthBar.SetHealth(_currentHealth);
+        _playerRespawn = FindObjectOfType<PlayerRespawn>();
+        _animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
         _currentHealth = maxHealth;
-        healthBar.SetHealth(_currentHealth);
-        _playerRespawn = FindObjectOfType<PlayerRespawn>();
-        _animator = GetComponent<Animator>();
     }
 
     public void Die()
@@ -31,9 +38,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         _currentHealth -= damage;
         healthBar.SetHealth(_currentHealth);
+        
         if (_currentHealth <= 0)
         {
+            var randomSound = UnityEngine.Random.Range(0, 2) == 0 ? _ams.dmgSound1 : _ams.dmgSound2;
+            _ams.PlaySfx(randomSound);
             Die();
+        }
+        else
+        {
+            var randomSound = UnityEngine.Random.Range(0, 2) == 0 ? _ams.dmgSound3 : _ams.dmgSound4;
+            _ams.PlaySfx(randomSound);
         }
     }
 

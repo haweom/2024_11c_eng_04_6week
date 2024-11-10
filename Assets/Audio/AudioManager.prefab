@@ -323,6 +323,10 @@ MonoBehaviour:
   swordPickUp: {fileID: 8300000, guid: 3470773e353317249a86c88e3020b124, type: 3}
   coinPickUp: {fileID: 8300000, guid: a718d39b5b7280d49bce05fe4672ef74, type: 3}
   totem1Shoot: {fileID: 8300000, guid: b073e85d0db74df4ebbf7f631e06836a, type: 3}
+  dmgSound1: {fileID: 8300000, guid: c2d0656fbfd653843a805d504e603da3, type: 3}
+  dmgSound2: {fileID: 8300000, guid: d0278ff9d1c55b945bedfdfea3cc0dea, type: 3}
+  dmgSound3: {fileID: 8300000, guid: dda68148ccaaa6445a41e1a99603c267, type: 3}
+  dmgSound4: {fileID: 8300000, guid: b05b09363226c214286557c72bf1d891, type: 3}
   mainMenuTheme: {fileID: 8300000, guid: a5e22da97764b6844a79900b4c2af91f, type: 3}
   leve1Theme: {fileID: 8300000, guid: 75526d5bedc73a2418be61b44c54effb, type: 3}
   level2Theme: {fileID: 8300000, guid: d818261cd6151b9419222caff175302f, type: 3}
