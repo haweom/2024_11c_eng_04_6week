@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SwordThrow : MonoBehaviour
 {
-    [SerializeField] private float damageAmount;
+    [SerializeField] private float damageAmount = 30f;
     [SerializeField] private CircleCollider2D swordCollider;
     [SerializeField] private float throwDetectionRadius = 1.0f;
     [SerializeField] private float timeBeforeSwordReturning;
