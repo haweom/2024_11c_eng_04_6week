@@ -82,10 +82,6 @@ public class PlayerMovement : MonoBehaviour
             
                 ApplyGrappleForce();
             }
-
-            PlayerDirectionChanger();
-            AnimationChecker();
-            AnimationSetter();
         }
         SoundPlayer();
     }
@@ -108,6 +104,9 @@ public class PlayerMovement : MonoBehaviour
                 _rb.velocity = Vector2.zero;
             } 
         }
+        PlayerDirectionChanger();
+        AnimationChecker();
+        AnimationSetter();
     }
 
     private void AerialMovement()
