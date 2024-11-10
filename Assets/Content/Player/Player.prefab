@@ -80,7 +80,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   gizmosDraw: {fileID: 9170578983977922949}
-  timeBetweenJumps: 0.1
 --- !u!1 &3168429358821466385
 GameObject:
   m_ObjectHideFlags: 0
