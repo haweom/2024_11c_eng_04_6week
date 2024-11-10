@@ -11,6 +11,11 @@ public class HealthBarScript : MonoBehaviour
     
     [SerializeField] private float easeSpeed = 0.05f;
 
+    private void Start()
+    {
+        healthSlider.value = healthSlider.maxValue;
+    }
+
     private void Update()
     {
         if (easeHealthSlider.value != healthSlider.value)
@@ -22,7 +27,6 @@ public class HealthBarScript : MonoBehaviour
     public void SetHealth(float health)
     {
         healthSlider.value = health;
-        //easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, healthSlider.value, easeSpeed);
     }
     
 }

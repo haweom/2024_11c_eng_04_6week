@@ -2285,7 +2285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 5379909199562124466}
   easeHealthSlider: {fileID: 5030254919006925705}
-  easeSpeed: 0.01
+  easeSpeed: 0.1
 --- !u!1 &4233704158500440426
 GameObject:
   m_ObjectHideFlags: 0
