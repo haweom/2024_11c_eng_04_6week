@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6766d95e6a7d7db449f4db00212aec69, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: 
+  dialogue:
+  - '*The crab sits on a rock, inspecting a rusty sword with its claw as the pirate
+    stumbles toward it, soaked and exhausted.*'
+  - 'Crab:
+
+    Oh, look who decided to wash up on my shore! And here I thought I''d
+    keep this little beauty for myself.'
+  - '*The pirate stares at the sword, his eyes lighting up.*'
+  - "Yes, yes, I know. \"It's my sword!\" you were probably about to say. Found it
+    washed up on the shore. Thought I\u2019d give it a spin myself!"
+  - '*The pirate nods, gripping the sword, ready to swing.*'
+  - "Crab:\nHold on, sailor! This thing\u2019s got a few tricks you\u2019ll need
+    to learn. Give it a quick swipe with your left mouse click, for starters."
+  - '*The pirate grins, carefully holding the sword testing its weight.*'
+  - "Crab:\nAnd if you\u2019re feeling fancy, hold down that left mouse click to
+    really wind up a throw. Just... try not to lose it, alright?"
+  - "Crab:\nThere you go! Now, go on\u2014give it a whirl. And remember, if you lose
+    it again, don\u2019t expect me to fish it out of the waves for you!"
