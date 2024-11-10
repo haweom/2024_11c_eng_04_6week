@@ -328,6 +328,13 @@ public class PlayerMovement : MonoBehaviour
             _ams.srcRun.Pause();
         }
     }
+
+    public void SetIdle()
+    {
+        _xInput = 0;
+        _running = false;
+        _animator.SetBool("running", false);
+    }
     
     private void OnCollisionEnter2D(Collision2D other)
     {

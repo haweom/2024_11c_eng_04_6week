@@ -8,8 +8,14 @@ public class InteractPlayer : MonoBehaviour
     [SerializeField] private DialogueUI dialogueUI;
     
     public DialogueUI DialogueUI => dialogueUI;
+    private PlayerMovement _playerMovement;
     
     public Iinteractable Interactable { get; set; }
+
+    private void Awake()
+    {
+        _playerMovement = gameObject.GetComponent<PlayerMovement>();
+    }
 
     private void Update()
     {
@@ -20,6 +26,7 @@ public class InteractPlayer : MonoBehaviour
                 if (Interactable != null)
                 {
                     Interactable.Interact(this);
+                    _playerMovement.SetIdle();
                 }
             }
         }
