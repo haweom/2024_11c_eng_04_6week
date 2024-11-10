@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18a0c1183408d54b8db069221e13bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 50
+  damageAmount: 30
   swordCollider: {fileID: 8159881999817462835}
   throwDetectionRadius: 1
   timeBeforeSwordReturning: 5
