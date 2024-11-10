@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
                 tangentDirection = -tangentDirection;
             }
             
-            _rb.AddForce(tangentDirection * forceMultiplier * Mathf.Abs(_xInput), ForceMode2D.Force);
+            _rb.AddForce(tangentDirection * (forceMultiplier * Mathf.Abs(_xInput)), ForceMode2D.Force);
             
             if (_rb.velocity.magnitude > maxGrappleVelocity)
             {
