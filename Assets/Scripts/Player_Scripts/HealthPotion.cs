@@ -27,6 +27,11 @@ public class HealthPotion : MonoBehaviour
         get { return _cooldownTimer; }
     }
 
+    public void ResetCooldown()
+    {
+        _cooldownTimer = 0f;
+    }
+
     void Update()
     {
         if (!PauseMenu.IsPaused)

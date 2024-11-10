@@ -9,10 +9,13 @@ public class PlayerRespawn : MonoBehaviour
     private RespawnPoint respawnPoint;
     private GameObject player;
     private PlayerHealth playerHealth;
+    private HealthPotion healthPotion;
 
     void Start()
     {
         StartCoroutine(InitializeRespawnPoint());
+        
+        healthPotion = GetComponent<HealthPotion>();
         
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -43,6 +46,8 @@ public class PlayerRespawn : MonoBehaviour
         if (respawnPoint != null)
         {
             player.transform.position = respawnPoint.transform.position;
+            
+            healthPotion.ResetCooldown();
             
             playerHealth.setHealth(20f);
         }
