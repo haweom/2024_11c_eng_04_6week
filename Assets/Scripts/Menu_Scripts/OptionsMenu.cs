@@ -10,6 +10,7 @@ public class OptionsMenu : MonoBehaviour
     private AudioSource _musicSrc;
     private AudioSource _sfxSrc;
     private AudioSource _runSrc;
+    private AudioSource _dynamicSrc;
     
     public Slider musicSlider;
     public Slider sfxSlider;
@@ -21,6 +22,7 @@ public class OptionsMenu : MonoBehaviour
             _musicSrc = AudioManagerScript.Instance.srcMusic;
             _sfxSrc = AudioManagerScript.Instance.srcSfx;
             _runSrc = AudioManagerScript.Instance.srcRun;
+            _dynamicSrc = AudioManagerScript.Instance.dynamicSfx;
             
             float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
             float savedSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
@@ -30,7 +32,7 @@ public class OptionsMenu : MonoBehaviour
         }
         else
         {
-            Debug.LogError("AudioManagerScript instance not found.");
+            Debug.LogError("AudioManagerScript instance not found");
         }
     }
 
@@ -58,6 +60,7 @@ public class OptionsMenu : MonoBehaviour
     {
         _sfxSrc.volume = value;
         _runSrc.volume = value;
+        _dynamicSrc.volume = value;
         
         PlayerPrefs.SetFloat("SFXVolume", value);
         PlayerPrefs.Save();

@@ -329,7 +329,7 @@ MonoBehaviour:
   dmgSound4: {fileID: 8300000, guid: b05b09363226c214286557c72bf1d891, type: 3}
   mainMenuTheme: {fileID: 8300000, guid: a5e22da97764b6844a79900b4c2af91f, type: 3}
   leve1Theme: {fileID: 8300000, guid: 75526d5bedc73a2418be61b44c54effb, type: 3}
-  level2Theme: {fileID: 8300000, guid: d818261cd6151b9419222caff175302f, type: 3}
+  level2Theme: {fileID: 8300000, guid: e72b3d7d8c6bfb740bfe286cead0ba18, type: 3}
 --- !u!1 &5753769903266326475
 GameObject:
   m_ObjectHideFlags: 0
