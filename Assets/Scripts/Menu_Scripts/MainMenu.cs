@@ -6,11 +6,14 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject optionsMenu;
     private OptionsMenu _optionsMenu;
+    public GameObject creditsMenu;
+    private Credits _credits;
     private AudioManagerScript _ams;
     
     private void Awake()
     {
         _optionsMenu = optionsMenu.GetComponent<OptionsMenu>();
+        _credits = creditsMenu.GetComponent<Credits>();
         _ams = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
         _ams.srcMusic.loop = true;
     }
@@ -36,6 +39,11 @@ public class MainMenu : MonoBehaviour
     public void Options()
     {
         _optionsMenu.Show();
+    }
+
+    public void Credits()
+    {
+        _credits.Show();
     }
 
     private void Update()
